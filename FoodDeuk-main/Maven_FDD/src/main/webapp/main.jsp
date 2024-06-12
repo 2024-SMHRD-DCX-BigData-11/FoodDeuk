@@ -5,9 +5,20 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>기본 홈페이지</title>
+  <title>푸드득</title>
   <style>
     /* 기본 스타일 */
+   @font-face {
+    font-family: 'Jalnan';
+    font-weight: normal;
+    font-style: normal;
+    src: url('https://cdn.jsdelivr.net/gh/webfontworld/goodchoice/Jalnan.eot');
+    src: url('https://cdn.jsdelivr.net/gh/webfontworld/goodchoice/Jalnan.eot?#iefix') format('embedded-opentype'),
+        url('https://cdn.jsdelivr.net/gh/webfontworld/goodchoice/Jalnan.woff2') format('woff2'),
+        url('https://cdn.jsdelivr.net/gh/webfontworld/goodchoice/Jalnan.woff') format('woff'),
+        url('https://cdn.jsdelivr.net/gh/webfontworld/goodchoice/Jalnan.ttf') format("truetype");
+    font-display: swap;
+}
     body {
       font-family: Arial, sans-serif;
       margin: 0;
@@ -16,15 +27,27 @@
       color: #333;
     }
     header {
-      background-color: #ffa500;
+      background-color: #ADD8E6;
       color: #fff;
-      padding: 20px;
+      padding: 10px;
       display: flex;
       justify-content: space-between;
       align-items: center;
     }
     header h1 {
-      color: #ffff00;
+      font-family: 'Jalnan', sans-serif; /* 폰트 적용 */
+      font-size: 2em; /* 글자 크기 키움 */
+      color: #FFD700; /* 진한 노랑 색상 */
+      text-shadow: 
+          -3px -3px 0 #fff,  
+          3px -3px 0 #fff,
+          -3px 3px 0 #fff,
+          3px 3px 0 #fff,
+          -3px 0 0 #fff,  
+          3px 0 0 #fff,
+          0 -3px 0 #fff,
+          0 3px 0 #fff; /* 더 두꺼운 흰색 테두리 효과 */
+    }
     }
     nav {
       display: flex;
@@ -32,10 +55,20 @@
       padding: 10px 0;
     }
     nav a {
-      color: #ffff00; /* 게시판, 로그인, 회원가입 메뉴의 색상을 노란색으로 변경 */
+    font-family: 'Jalnan', sans-serif;
+      color: #FFD700; /* 게시판, 로그인, 회원가입 메뉴의 색상을 노란색으로 변경 */
       text-decoration: none;
       padding: 10px 20px;
       margin: 0 10px;
+      text-shadow: 
+          -1px -1px 0 #fff,  
+          1px -1px 0 #fff,
+          -1px 1px 0 #fff,
+          1px 1px 0 #fff,
+          -1px 0 0 #fff,  
+          1px 0 0 #fff,
+          0 -1px 0 #fff,
+          0 1px 0 #fff; /* 더 두꺼운 흰색 테두리 효과 */
     }
     nav a:hover {
       background-color: #444;
