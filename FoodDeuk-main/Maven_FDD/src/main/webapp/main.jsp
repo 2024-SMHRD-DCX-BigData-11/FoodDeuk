@@ -6,6 +6,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>푸드득</title>
+  <script type="text/javascript" src="http://openapi.map.naver.com/openapi/v3/maps.js?ncpClientId=0x06a17qwi"></script>
   <style>
     /* 기본 스타일 */
    @font-face {
@@ -98,7 +99,7 @@
 </head>
 <body>
   <header>
-    <h1>기본 홈페이지</h1>
+    <h1>푸드득</h1>
     <%
     // session 값 가지고 오기
         		Member login_member = (Member)session.getAttribute("login_member");
@@ -118,6 +119,7 @@
   <div class="content-container">
     <div class="main-content">
       <!-- 메인 콘텐츠 영역 -->
+      <div id="map" style="width:100%;height:100%"></div>
     </div>
     <div class="banner-container">
       <div class="banner">배너 1</div>
@@ -127,5 +129,12 @@
       <div class="banner">배너 5</div>
     </div>
   </div>
+  <script type="text/javascript">
+  	var mapOptions = {
+  			center: new naver.maps.LatLng(34.9683954, 127.4841841),
+  			zoom: 17
+  	};
+  	var map = new naver.maps.Map('map', mapOptions)
+  </script>
 </body>
 </html>
