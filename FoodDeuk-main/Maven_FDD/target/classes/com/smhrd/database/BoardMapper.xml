@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.smhrd.database.BoardMapper">
+  	<insert id="insertBoard" parameterType="Board">
+  		insert into web_board values(num_board.nextval, #{title},#{writer},#{filename},#{content},sysdate)
+  	</insert>
+  	<select id="showBoard" resultType="Board">
+  		select * from web_board
+  	</select>
+     <select id="detailBoard" resultType="Board">
+     	select * from web_board where num=#{num}
+     
+     </select>
+</mapper>
