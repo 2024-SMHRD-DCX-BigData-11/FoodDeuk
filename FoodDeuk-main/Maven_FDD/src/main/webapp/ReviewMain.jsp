@@ -97,7 +97,7 @@
              </tr>
              <tr>
                 <td><img src="./images/<%= review.getFilename() %>"></td>
-                <td class="review-content"><%= review.getReview_content()%></td>
+                <td><%= review.getReview_content()%></td>
                 <td><%= review.getRatings() %></td>     
             </tr>
             <% } %>
