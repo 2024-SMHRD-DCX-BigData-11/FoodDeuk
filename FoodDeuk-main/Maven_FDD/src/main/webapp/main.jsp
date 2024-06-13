@@ -147,6 +147,40 @@ nav a {
       font-size: 1em;
       flex: 1;
       margin-bottom: 1px;
+<<<<<<< HEAD
+=======
+    }
+    #map {
+      width: 100%;
+      height: 100%;
+      min-height: 600px; /* 높이 증가 */
+    }
+
+    /* 추가된 flip-horizontal-bottom 애니메이션 */
+    @-webkit-keyframes flip-horizontal-bottom {
+      0% {
+        -webkit-transform: rotateX(0);
+                transform: rotateX(0);
+      }
+      100% {
+        -webkit-transform: rotateX(-180deg);
+                transform: rotateX(-180deg);
+      }
+    }
+    @keyframes flip-horizontal-bottom {
+      0% {
+        -webkit-transform: rotateX(0);
+                transform: rotateX(0);
+      }
+      100% {
+        -webkit-transform: rotateX(-180deg);
+                transform: rotateX(-180deg);
+      }
+    }
+    .flip-horizontal-bottom {
+      -webkit-animation: flip-horizontal-bottom 0.2s linear 10 both;
+              animation: flip-horizontal-bottom 0.2s linear 10 both;
+>>>>>>> branch 'FoodDeuk' of https://github.com/2024-SMHRD-DCX-BigData-11/FoodDeuk.git
     }
     #map {
       width: 100%;
@@ -191,7 +225,11 @@ nav a {
       %>
       <nav class="nav">
 <<<<<<< HEAD
+<<<<<<< HEAD
         <a class="nav-link" href="ReviewMain.jsp">게시판</a>
+=======
+        <a class="nav-link" href="BoardMain.jsp">게시판</a>
+>>>>>>> branch 'FoodDeuk' of https://github.com/2024-SMHRD-DCX-BigData-11/FoodDeuk.git
 =======
         <a class="nav-link" href="BoardMain.jsp">게시판</a>
 >>>>>>> branch 'FoodDeuk' of https://github.com/2024-SMHRD-DCX-BigData-11/FoodDeuk.git
@@ -208,6 +246,13 @@ nav a {
   <div class="container">
     <div class="map-container">
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+	<div class="recommendation-container">
+		<button class="recommendation-button">음식추천</button>
+        <div class="flip-horizontal-bottom">메뉴</div>
+      </div>
+>>>>>>> branch 'FoodDeuk' of https://github.com/2024-SMHRD-DCX-BigData-11/FoodDeuk.git
 =======
 	<div class="recommendation-container">
 		<button class="recommendation-button">음식추천</button>
