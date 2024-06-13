@@ -14,6 +14,7 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import com.smhrd.model.Member;
+import com.smhrd.model.memberDAO;
 
 
 /**
@@ -58,6 +59,7 @@ public class LoginProgram extends HttpServlet {protected void service(HttpServle
 			psmt.setString(2, pw);
 
 			rs = psmt.executeQuery();
+			
 			if (rs.next()) {
 				String logIn_id = rs.getString(1);
 				String logIn_pw = rs.getString(2);
@@ -81,9 +83,9 @@ public class LoginProgram extends HttpServlet {protected void service(HttpServle
 
 		if (member != null) {
 			
-			HttpSession session= request.getSession();
-			session.setAttribute("member", member);
-
+			
+			HttpSession session = request.getSession();
+	    	session.setAttribute("member", member);
 			
 			response.sendRedirect("main.jsp");
 		} else {

@@ -4,13 +4,12 @@
   "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.smhrd.database.BoardMapper">
   	<insert id="insertBoard" parameterType="Board">
-  		insert into web_board values(num_board.nextval, #{title},#{writer},#{filename},#{content},sysdate)
+  		insert into t_review values(num_board.nextval, #{res_no},#{user_no},#{review_content},#{ratings},sysdate)
   	</insert>
   	<select id="showBoard" resultType="Board">
-  		select * from web_board
+  		select * from t_review
   	</select>
      <select id="detailBoard" resultType="Board">
-     	select * from web_board where num=#{num}
-     
+     	select * from t_review where num=#{num}
      </select>
 </mapper>

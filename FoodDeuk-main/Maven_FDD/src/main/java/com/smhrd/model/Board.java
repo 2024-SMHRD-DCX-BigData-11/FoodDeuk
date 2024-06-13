@@ -2,9 +2,7 @@ package com.smhrd.model;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;
-import lombok.NoArgsConstructor;
 import lombok.NonNull;
-import lombok.RequiredArgsConstructor;
 import lombok.Setter;
 import lombok.ToString;
 
@@ -13,7 +11,7 @@ import lombok.ToString;
 @Getter
 @Setter
 @ToString
-@RequiredArgsConstructor
+
 public class Board {
 	private int num;
 	@NonNull

@@ -8,6 +8,7 @@
 	<properties resource="com/smhrd/database/db.properties" />
 	<typeAliases>
 		<typeAlias type="com.smhrd.model.Member" alias="Member" />
+		<typeAlias type="com.smhrd.model.Review" alias="Review"/>
 	</typeAliases>
 	<environments default="development">
 		<environment id="development">
@@ -24,6 +25,7 @@
 	<!-- sql문들을 정의해주는 mapper.xml을 계속해서 만들거데 어디에 있는지 경로를 지정해주는 태그 -->
 	<mappers>
 		<mapper resource="com/smhrd/database/MemberMapper.xml" />
+		<mapper resource="com/smhrd/database/ReviewMapper.xml"/>
 	</mappers>
 
 </configuration>
