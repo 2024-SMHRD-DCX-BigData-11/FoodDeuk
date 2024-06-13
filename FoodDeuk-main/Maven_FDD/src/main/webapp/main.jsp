@@ -142,7 +142,7 @@
           <a class="nav-link" href="Join.jsp">회원가입</a>
         <% } else { %>
           <a class="nav-link" href="UpdateMember.jsp">개인정보수정</a>
-          <a class="nav-link" href="LogoutCon.jsp">로그아웃</a>
+          <a class="nav-link" href="LogoutCon">로그아웃</a>
         <% } %>
       </nav>
     </div>
