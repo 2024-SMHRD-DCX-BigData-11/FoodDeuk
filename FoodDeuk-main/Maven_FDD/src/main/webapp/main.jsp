@@ -24,6 +24,7 @@
       font-family: Arial, sans-serif;
       background-color: #ffffff;
       color: #333;
+      
     }
     header {
       background-color: #ADD8E6;
@@ -59,6 +60,10 @@
     .container {
       display: flex;
       flex-wrap: wrap;
+      padding-right: 1px;  
+      padding-left:1px;
+    margin-right: auto;  margin-left: auto;
+    
     }
     .map-container {
       flex: 0 0 75%;
@@ -141,8 +146,8 @@
   </header>
   <div class="container">
     <div class="map-container">
-	<div class="recommendation-container">
-		<button class="recommendation-button">음식추천</button>
+   <div class="recommendation-container">
+      <button class="recommendation-button">음식추천</button>
         <div class="flip-horizontal-bottom">메뉴</div>
       </div>
       <div id="map"></div>
