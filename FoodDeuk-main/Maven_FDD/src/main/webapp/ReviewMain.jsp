@@ -92,11 +92,13 @@
                 <td><%= review.getRes_no() %></td>-->
             <tr>
                 <td><%= review.getUser_no() %></td>
-                <td><%= review.getR_date() %></td>
+                <td colspan="2"><%= review.getR_date() %></td>
+                <td></td>
              </tr>
              <tr>
                 <td><img src="./images/<%= review.getFilename() %>"></td>
-                <td class="review-content"><%= review.getReview_content()%></td>     
+                <td class="review-content"><%= review.getReview_content()%></td>
+                <td><%= review.getRatings() %></td>     
             </tr>
             <% } %>
         </table>
