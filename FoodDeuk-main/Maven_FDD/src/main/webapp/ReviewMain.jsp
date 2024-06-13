@@ -68,6 +68,10 @@
         .buttons button:hover {
             background-color: yellow;
         }
+        #list td img {
+    max-width: 200px; /* 이미지 최대 너비 설정 */
+    height: auto; /* 이미지 높이는 자동으로 조정 */
+}
     </style>
 </head>
 <body>
@@ -91,7 +95,7 @@
                 <td><%= review.getR_date() %></td>
              </tr>
              <tr>
-                <td><%= review.getFilename() %></td>
+                <td><img src="./images/<%= review.getFilename() %>"></td>
                 <td class="review-content"><%= review.getReview_content()%></td>     
             </tr>
             <% } %>

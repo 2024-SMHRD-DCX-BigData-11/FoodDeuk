@@ -20,11 +20,11 @@ public class ReviewDAO {
     public ReviewDAO() {
         reviews = new ArrayList<>();
         // 샘플 데이터 추가
-        reviews.add(new Review(1, 1,1,"image1", "음식이 정말 맛있어요!", "4.5", "2023-05-01"));
-        reviews.add(new Review(2, 2, 2,"image2", "음식이 별로였어요.", "2.0", "2023-05-02"));
-        reviews.add(new Review(3, 3, 3,"image3", "최고의 레스토랑이에요!", "3.0", "2023-05-03"));
-        reviews.add(new Review(4, 4, 4,"image4", "최고의 레스토랑이에요!", "4.0", "2023-05-04"));
-        reviews.add(new Review(5, 5, 5,"image5", "최고의 레스토랑이에요!", "5.0", "2023-05-05"));
+        reviews.add(new Review(1, 1,1,"포켓몬 (1).png", "음식이 정말 맛있어요!", "4.5", "2023-05-01"));
+        reviews.add(new Review(2, 2, 2,"포켓몬 (2).png", "음식이 별로였어요.", "2.0", "2023-05-02"));
+        reviews.add(new Review(3, 3, 3,"포켓몬 (2).png", "최고의 레스토랑이에요!", "3.0", "2023-05-03"));
+        reviews.add(new Review(4, 4, 4,"포켓몬 (2).png", "최고의 레스토랑이에요!", "4.0", "2023-05-04"));
+        reviews.add(new Review(5, 5, 5,"포켓몬 (2).png", "최고의 레스토랑이에요!", "5.0", "2023-05-05"));
     }
 
     public List<Review> getAllReviews() {
