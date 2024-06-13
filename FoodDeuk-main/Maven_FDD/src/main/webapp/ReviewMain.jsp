@@ -31,8 +31,8 @@
         }
         #list th, #list td {
             padding: 16px;
-            text-align: left;
-            border-bottom: 1px solid #ddd;
+            text-align: center;
+            border: 1px solid #ddd;
         }
         #list th {
             background-color: #f2f2f2;
@@ -92,7 +92,7 @@
                 <td><%= review.getRes_no() %></td>-->
             <tr>
                 <td><%= review.getUser_no() %></td>
-                <td colspan="2"><%= review.getR_date() %></td>
+                <td><%= review.getR_date() %></td>
                 <td></td>
              </tr>
              <tr>

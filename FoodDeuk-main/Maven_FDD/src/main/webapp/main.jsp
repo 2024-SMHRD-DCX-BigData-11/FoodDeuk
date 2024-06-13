@@ -126,12 +126,36 @@
       -webkit-animation: flip-horizontal-bottom 0.2s linear 10 both;
               animation: flip-horizontal-bottom 0.2s linear 10 both;
     }
+    .search-txt{
+    position: relative;
+    width: 600px;
+    }
+   input {
+     width: 100%;
+     border: 1px solid #bbb;
+     border-radius: 8px;
+     padding: 10px 12px;
+     font-size: 14px;
+   }
+   
+   img {
+     position : absolute;
+     width: 17px;
+     top: 10px;
+     right: 12px;
+     margin: 0;
+   }
   </style>
 </head>
 <body>
   <header class="p-3 mb-3 border-bottom">
     <div class="container d-flex flex-wrap justify-content-between align-items-center">
       <h1 class="mb-0">푸드득</h1>
+      <form class="search-box" action="search" method="get">
+       <input class="search-txt" type="text" name="query" placeholder="검색어를 입력하세요">
+       <img src="https://s3.ap-northeast-2.amazonaws.com/cdn.wecode.co.kr/icon/search.png">
+       <button class="search-btn" type="submit"></button>
+    </form>
       <%
         Member login_member = (Member)session.getAttribute("login_member");
       %>
