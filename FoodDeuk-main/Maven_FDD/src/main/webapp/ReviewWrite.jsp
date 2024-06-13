@@ -36,6 +36,8 @@
       padding: 10px 20px;
       border: none;
       cursor: pointer;
+      border-radius: 4px;
+      float: right; /* 버튼을 오른쪽으로 정렬 */
     }
   </style>
 </head>

@@ -20,7 +20,7 @@
             max-width: 1200px;
             margin: 0 auto;
             padding: 30px;
-            background-color: #fff;
+            background-color: #FFF5E1; /* 노란색 배경 */
             border-radius: 8px;
             box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
         }
@@ -58,7 +58,7 @@
         }
         .buttons button {
             padding: 10px 16px;
-            background-color: #03c75a;
+            background-color: #ff9800; /* 주황색 */
             color: white;
             border: none;
             border-radius: 4px;
@@ -66,7 +66,7 @@
             font-size: 16px;
         }
         .buttons button:hover {
-            background-color: #00b441;
+            background-color: yellow;
         }
     </style>
 </head>
@@ -77,28 +77,22 @@
         Member login_member = (Member)session.getAttribute("login_member");
       %>
         <table id="list">
-            <tr>
-                <th>번호</th>
-                <th>식당</th>
-                <th>작성자</th>
-                <th>사진</th>
-                <th>리뷰</th>
-                <th>평점</th>
-                <th>작성일</th>
-            </tr>
+            
             <%
                 ReviewDAO reviewDAO = new ReviewDAO();
                 List<Review> reviews = reviewDAO.getAllReviews();
                 for (Review review : reviews) {
             %>
+           
+               <!-- <td><%= review.getReview_no() %></td>
+                <td><%= review.getRes_no() %></td>-->
             <tr>
-                <td><%= review.getReview_no() %></td>
-                <td><%= review.getRes_no() %></td>
                 <td><%= review.getUser_no() %></td>
+                <td><%= review.getR_date() %></td>
+             </tr>
+             <tr>
                 <td><%= review.getFilename() %></td>
-                <td class="review-content"><%= review.getReview_content()%></td>
-                <td><%= review.getRatings() %></td>
-                <td><%= review.getR_date() %></td>          
+                <td class="review-content"><%= review.getReview_content()%></td>     
             </tr>
             <% } %>
         </table>
