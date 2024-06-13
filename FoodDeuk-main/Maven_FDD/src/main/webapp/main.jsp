@@ -24,6 +24,8 @@
       font-family: Arial, sans-serif;
       background-color: #ffffff;
       color: #333;
+      margin: 0;
+ 	 padding: 0;
       
     }
     header {
@@ -57,18 +59,19 @@
           0 -1px 0 #fff,
           0 1px 0 #fff;
     }
+    
     .container {
       display: flex;
-      flex-wrap: wrap;
-      padding-right: 1px;  
-      padding-left:1px;
-    margin-right: auto;  margin-left: auto;
-    
+      flex-wrap: wrap; 
+      max-width: 100%;
+ 	 padding-left: 0;
+  	padding-right: 0; 
+      
     }
     .map-container {
       flex: 0 0 75%;
       position: relative;
-      padding: 10px;
+      padding-right: 1px;
     }
      .recommendation-container {
       flex: 0 0 5%;
