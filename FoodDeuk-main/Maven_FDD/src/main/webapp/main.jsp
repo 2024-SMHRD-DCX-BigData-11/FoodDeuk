@@ -21,67 +21,6 @@
       font-display: swap;
     }
     body {
-<<<<<<< HEAD
-    font-family: Arial, sans-serif;
-    background-color: #ffffff;
-    color: #333;
-}
-header {
-    background-color: #ADD8E6;
-    color: #fff;
-}
-header h1 {
-    font-family: 'Jalnan', sans-serif;
-    font-size: 2em;
-    color: #FFD700;
-    text-shadow: 
-        -3px -3px 0 #fff,  
-        3px -3px 0 #fff,
-        -3px 3px 0 #fff,
-        3px 3px 0 #fff,
-        -3px 0 0 #fff,  
-        3px 0 0 #fff,
-        0 -3px 0 #fff,
-        0 3px 0 #fff;
-}
-nav a {
-    font-family: 'Jalnan', sans-serif;
-    color: #FFD700;
-    text-shadow: 
-        -1px -1px 0 #fff,  
-        1px -1px 0 #fff,
-        -1px 1px 0 #fff,
-        1px 1px 0 #fff,
-        -1px 0 0 #fff,  
-        1px 0 0 #fff,
-        0 -1px 0 #fff,
-        0 1px 0 #fff;
-}
-.container {
-    display: flex;
-    flex-wrap: wrap;
-}
-.map-container {
-    flex: 0 0 75%; /* 변경된 비율 */
-    padding: 10px;
-}
-.banner-container {
-    flex: 0 0 25%; /* 변경된 비율 */
-    padding: 10px;
-}
-.banner {
-    background-color: #ccc;
-    text-align: center;
-    padding: 40px; /* 배너 크기 증가 */
-    margin-bottom: 20px;
-    font-size: 1em; /* 텍스트 크기 증가 */
-}
-#map {
-    width: 100%;
-    height: 100%;
-    min-height: 600px; /* 높이 증가 */
-}
-=======
       font-family: Arial, sans-serif;
       background-color: #ffffff;
       color: #333;
@@ -147,40 +86,6 @@ nav a {
       font-size: 1em;
       flex: 1;
       margin-bottom: 1px;
-<<<<<<< HEAD
-=======
-    }
-    #map {
-      width: 100%;
-      height: 100%;
-      min-height: 600px; /* 높이 증가 */
-    }
-
-    /* 추가된 flip-horizontal-bottom 애니메이션 */
-    @-webkit-keyframes flip-horizontal-bottom {
-      0% {
-        -webkit-transform: rotateX(0);
-                transform: rotateX(0);
-      }
-      100% {
-        -webkit-transform: rotateX(-180deg);
-                transform: rotateX(-180deg);
-      }
-    }
-    @keyframes flip-horizontal-bottom {
-      0% {
-        -webkit-transform: rotateX(0);
-                transform: rotateX(0);
-      }
-      100% {
-        -webkit-transform: rotateX(-180deg);
-                transform: rotateX(-180deg);
-      }
-    }
-    .flip-horizontal-bottom {
-      -webkit-animation: flip-horizontal-bottom 0.2s linear 10 both;
-              animation: flip-horizontal-bottom 0.2s linear 10 both;
->>>>>>> branch 'FoodDeuk' of https://github.com/2024-SMHRD-DCX-BigData-11/FoodDeuk.git
     }
     #map {
       width: 100%;
@@ -213,7 +118,6 @@ nav a {
       -webkit-animation: flip-horizontal-bottom 0.2s linear 10 both;
               animation: flip-horizontal-bottom 0.2s linear 10 both;
     }
->>>>>>> branch 'FoodDeuk' of https://github.com/2024-SMHRD-DCX-BigData-11/FoodDeuk.git
   </style>
 </head>
 <body>
@@ -224,15 +128,7 @@ nav a {
         Member login_member = (Member)session.getAttribute("login_member");
       %>
       <nav class="nav">
-<<<<<<< HEAD
-<<<<<<< HEAD
-        <a class="nav-link" href="ReviewMain.jsp">게시판</a>
-=======
         <a class="nav-link" href="BoardMain.jsp">게시판</a>
->>>>>>> branch 'FoodDeuk' of https://github.com/2024-SMHRD-DCX-BigData-11/FoodDeuk.git
-=======
-        <a class="nav-link" href="BoardMain.jsp">게시판</a>
->>>>>>> branch 'FoodDeuk' of https://github.com/2024-SMHRD-DCX-BigData-11/FoodDeuk.git
         <% if (login_member == null) { %>
           <a class="nav-link" href="Login.jsp">로그인</a>
           <a class="nav-link" href="Join.jsp">회원가입</a>
@@ -245,20 +141,10 @@ nav a {
   </header>
   <div class="container">
     <div class="map-container">
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
 	<div class="recommendation-container">
 		<button class="recommendation-button">음식추천</button>
         <div class="flip-horizontal-bottom">메뉴</div>
       </div>
->>>>>>> branch 'FoodDeuk' of https://github.com/2024-SMHRD-DCX-BigData-11/FoodDeuk.git
-=======
-	<div class="recommendation-container">
-		<button class="recommendation-button">음식추천</button>
-        <div class="flip-horizontal-bottom">메뉴</div>
-      </div>
->>>>>>> branch 'FoodDeuk' of https://github.com/2024-SMHRD-DCX-BigData-11/FoodDeuk.git
       <div id="map"></div>
     </div>
     <div class="banner-container">
@@ -279,4 +165,3 @@ nav a {
   </script>
 </body>
 </html>
-
