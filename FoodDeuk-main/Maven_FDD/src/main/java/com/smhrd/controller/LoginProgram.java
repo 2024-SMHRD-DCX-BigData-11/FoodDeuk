@@ -85,7 +85,7 @@ public class LoginProgram extends HttpServlet {protected void service(HttpServle
 			
 			
 			HttpSession session = request.getSession();
-	    	session.setAttribute("member", member);
+	    	session.setAttribute("login_member", member);
 			
 			response.sendRedirect("main.jsp");
 		} else {

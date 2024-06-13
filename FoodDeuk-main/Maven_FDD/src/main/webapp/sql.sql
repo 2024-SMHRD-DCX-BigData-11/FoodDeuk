@@ -32,14 +32,14 @@ START WITH 1
 INCREMENT BY 1;
 
 -- Auto Increment를 위한 Trigger 추가 SQL - t_user.user_no
-CREATE OR REPLACE TRIGGER t_user_AI_TRG
-BEFORE INSERT ON t_user 
-REFERENCING NEW AS NEW FOR EACH ROW 
-BEGIN 
-    SELECT t_user_SEQ.NEXTVAL
-    INTO :NEW.user_no
-    FROM DUAL;
-END;
+--CREATE OR REPLACE TRIGGER t_user_AI_TRG
+--BEFORE INSERT ON t_user 
+--REFERENCING NEW AS NEW FOR EACH ROW 
+--BEGIN 
+--    SELECT t_user_SEQ.NEXTVAL
+--    INTO :NEW.user_no
+--    FROM DUAL;
+--END;
 -- 테이블 생성 SQL - t_review
 CREATE TABLE t_review
 (
@@ -59,16 +59,16 @@ START WITH 1
 INCREMENT BY 1;
 
 -- Auto Increment를 위한 Trigger 추가 SQL - t_review.review_no
-CREATE OR REPLACE TRIGGER t_review_AI_TRG
-BEFORE INSERT ON t_review 
-REFERENCING NEW AS NEW FOR EACH ROW 
-BEGIN 
-    SELECT t_review_SEQ.NEXTVAL
-    INTO :NEW.review_no
-    FROM DUAL;
-END;
+--CREATE OR REPLACE TRIGGER t_review_AI_TRG
+--BEFORE INSERT ON t_review 
+--REFERENCING NEW AS NEW FOR EACH ROW 
+--BEGIN 
+--    SELECT t_review_SEQ.NEXTVAL
+--    INTO :NEW.review_no
+--    FROM DUAL;
+--END;
 
--- DROP TRIGGER t_review_AI_TRG; 
+DROP TRIGGER t_review_AI_TRG; 
 
 -- DROP SEQUENCE t_review_SEQ; 
 

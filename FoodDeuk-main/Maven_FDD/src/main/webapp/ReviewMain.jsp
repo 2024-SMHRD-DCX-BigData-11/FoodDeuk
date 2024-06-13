@@ -1,5 +1,6 @@
 <%@page import="com.smhrd.model.Review"%>
 <%@page import="com.smhrd.model.ReviewDAO"%>
+<%@page import="com.smhrd.model.Member"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ page import="java.util.List, com.smhrd.model.Review" %>
 <%@ page import="com.smhrd.model.ReviewDAO" %>
@@ -72,6 +73,9 @@
 <body>
     <div id="board">
         <h1 style="font-size: 24px; margin-bottom: 20px;">리뷰 게시판</h1>
+         <%
+        Member login_member = (Member)session.getAttribute("login_member");
+      %>
         <table id="list">
             <tr>
                 <th>번호</th>

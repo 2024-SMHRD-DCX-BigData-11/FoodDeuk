@@ -19,7 +19,7 @@ public class ReviewCon extends HttpServlet {
 		// 파일 업로드를 위한 변수 설정
         // 1. request
         // 2. 파일을 저장할 경로(상대경로)
-        String path = request.getServletContext().getRealPath("./file");
+        String path = request.getServletContext().getRealPath("./images");
         System.out.println(path);
         // 3. 파일 허용 용량
         int maxSize = 10*1024*1024; // 10MB

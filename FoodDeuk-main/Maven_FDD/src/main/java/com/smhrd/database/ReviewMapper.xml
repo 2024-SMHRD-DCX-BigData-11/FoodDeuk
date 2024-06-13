@@ -4,7 +4,7 @@
   "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.smhrd.database.ReviewMapper">
   	<insert id="insertReview" parameterType="Review">
-  		insert into t_review values(num_board.nextval, #{res_no},#{user_no},#{review_content},#{ratings},sysdate)
+  		insert into t_review values(t_review_SEQ.nextval, #{res_no},#{user_no},#{review_content},#{ratings},sysdate)
   	</insert>
   	<select id="showReview" resultType="Review">
   		select * from t_review

@@ -1,4 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@page import="com.smhrd.model.Member"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
@@ -39,30 +40,33 @@
   </style>
 </head>
 <body>
+<%
+        Member login_member = (Member)session.getAttribute("login_member");
+      %>
   <!-- Q16. 게시글 작성 기능(작성된 게시글은 DB에 저장) - 파일업로드 cos.jar 사용 -->
   <div id="board">
     <form action="ReviewCon" enctype="multipart/form-data" method="post">
       <table id="list">
         <tr>
           <td>식당</td>
-          <td>식당 고유 번호 사용</td>
+          <td>식당 고유 번호 가져오기</td>
         </tr>
         <tr>
           <td>작성자</td>
-          <td>작성자 고유 번호 사용</td>
+          <td><%=login_member.getUser_id() %></td>
         </tr>
         <tr>
           <td colspan="2">내용</td>
         </tr>
         <tr>
           <td colspan="2">
-            <input type="file" name="review_img" style="float: right;">
+            <input type="file" name="filename" style="float: right;">
             <textarea name="review_content" rows="10" style="resize: none;"></textarea>
           </td>
         </tr>
         <tr>
           <td>평점</td>
-          <td><input type="text" value="0~5"></td>
+          <td><input type="text" value="0~5" name="ratings"></td>
         </tr>
         <tr>
           <td colspan="2">
