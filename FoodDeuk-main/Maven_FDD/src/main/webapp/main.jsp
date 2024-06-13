@@ -136,7 +136,7 @@
         Member login_member = (Member)session.getAttribute("login_member");
       %>
       <nav class="nav">
-        <a class="nav-link" href="BoardMain.jsp">게시판</a>
+        <a class="nav-link" href="ReviewMain.jsp">게시판</a>
         <% if (login_member == null) { %>
           <a class="nav-link" href="Login.jsp">로그인</a>
           <a class="nav-link" href="Join.jsp">회원가입</a>
