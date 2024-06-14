@@ -41,6 +41,12 @@ public class memberDAO {
 		session.close();
 		return list;
 	}
+	public List<Member> search() {
+		SqlSession session = sqlSessionFactory.openSession(true);
+		List<Member> list = session.selectList("com.smhrd.database.MemberMapper.showMember");
+		session.close();
+		return list;
+	}
 
 	public int delete(String email) {
 		SqlSession session = sqlSessionFactory.openSession(true);

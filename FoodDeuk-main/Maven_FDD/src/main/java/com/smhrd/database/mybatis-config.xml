@@ -26,6 +26,7 @@
 	<mappers>
 		<mapper resource="com/smhrd/database/MemberMapper.xml" />
 		<mapper resource="com/smhrd/database/ReviewMapper.xml"/>
+		<mapper resource="com/smhrd/database/SearchMapper.xml"/>
 	</mappers>
 
 </configuration>
