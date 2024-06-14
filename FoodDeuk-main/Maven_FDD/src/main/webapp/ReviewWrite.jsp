@@ -44,7 +44,14 @@
 <body>
 <%
         Member login_member = (Member)session.getAttribute("login_member");
-      %>
+		if(login_member==null){
+      %> <script>
+        alert("로그인이 필요한 기능입니다.");
+        window.location.href = "ReviewMain.jsp"; // 로그인 페이지로 이동
+    </script>
+<%
+    } else {
+%>
   <!-- Q16. 게시글 작성 기능(작성된 게시글은 DB에 저장) - 파일업로드 cos.jar 사용 -->
   <div id="board">
     <form action="ReviewCon" enctype="multipart/form-data" method="post">
@@ -79,7 +86,7 @@
       </table>
     </form>
   </div>
-
+<%} %>
   <!-- Scripts -->
   <script src="assets/js/jquery.min.js"></script>
   <script src="assets/js/jquery.scrolly.min.js"></script>

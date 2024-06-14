@@ -68,7 +68,7 @@
     <div class="container">
         <div class="login-form">
             <h1>로그인</h1>
-            <form action="LoginProgram" method="post">
+            <form action="LoginSuccess" method="post">
                 <label for="userId">아이디:</label>
                 <input type="text" id="userId" name="userId" required>
                 <label for="userPw">비밀번호:</label>

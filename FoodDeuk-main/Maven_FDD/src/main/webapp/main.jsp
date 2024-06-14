@@ -74,13 +74,10 @@
       padding-right: 1px;
     }
      .recommendation-container {
-      flex: 0 0 5%;
-      padding: 5px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      margin-right: 10px;
-    }
+  display: flex;
+   justify-content: flex-end;
+}
+
     .banner-container {
       flex: 0 0 25%;
       display: flex;
@@ -108,8 +105,8 @@
                 transform: rotateX(0);
       }
       100% {
-        -webkit-transform: rotateX(-180deg);
-                transform: rotateX(-180deg);
+        -webkit-transform: rotateX(-360deg);
+                transform: rotateX(-360deg);
       }
     }
     @keyframes flip-horizontal-bottom {
@@ -118,14 +115,18 @@
                 transform: rotateX(0);
       }
       100% {
-        -webkit-transform: rotateX(-180deg);
-                transform: rotateX(-180deg);
+        -webkit-transform: rotateX(-360deg);
+                transform: rotateX(-360deg);
       }
     }
     .flip-horizontal-bottom {
       -webkit-animation: flip-horizontal-bottom 0.2s linear 10 both;
               animation: flip-horizontal-bottom 0.2s linear 10 both;
+              -webkit-transform-style: preserve-3d;
+          transform-style: preserve-3d;
+          
     }
+    
     .search-txt{
     position: relative;
     width: 600px;
@@ -145,6 +146,16 @@
      right: 12px;
      margin: 0;
    }
+	.recommendation-button, .high-price-button, .low-price-button {
+  background-color: #ffa500; /* 연주황색 */
+  color: white;
+  border : none;
+  text-align : right;
+  text-decoration: none;
+  font-size: 16px;
+  margin-left:10px;
+}
+   
   </style>
 </head>
 <body>
@@ -154,7 +165,7 @@
       <form class="search-box" action="search" method="get">
        <input class="search-txt" type="text" name="query" placeholder="검색어를 입력하세요">
        <img src="https://s3.ap-northeast-2.amazonaws.com/cdn.wecode.co.kr/icon/search.png">
-       <button class="search-btn" type="submit"></button>
+       <button class="search-btn" type="submit">검색</button>
     </form>
       <%
         Member login_member = (Member)session.getAttribute("login_member");
@@ -174,8 +185,10 @@
   <div class="container">
     <div class="map-container">
    <div class="recommendation-container">
-      <button class="recommendation-button">음식추천</button>
         <div class="flip-horizontal-bottom">메뉴</div>
+        <button class="recommendation-button">음식추천</button>
+      <button class="high-price-button">상한가</button>
+      <button class="low-price-button">최저가</button>
       </div>
       <div id="map"></div>
     </div>
@@ -187,6 +200,7 @@
       <div class="banner">배너 5</div>
     </div>
   </div>
+  
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
   <script type="text/javascript">
     var mapOptions = {
@@ -194,6 +208,7 @@
       zoom: 17
     };
     var map = new naver.maps.Map('map', mapOptions);
+ // 메뉴 부분 선택
   </script>
 </body>
 </html>
