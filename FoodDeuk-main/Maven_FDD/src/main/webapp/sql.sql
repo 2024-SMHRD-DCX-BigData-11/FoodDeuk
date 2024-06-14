@@ -30,7 +30,7 @@ COMMENT ON COLUMN t_user.joined_at IS '사용자 가입일자';
 CREATE SEQUENCE t_user_SEQ
 START WITH 1
 INCREMENT BY 1;
-
+select * from t_user;
 -- Auto Increment를 위한 Trigger 추가 SQL - t_user.user_no
 --CREATE OR REPLACE TRIGGER t_user_AI_TRG
 --BEFORE INSERT ON t_user 

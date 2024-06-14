@@ -24,7 +24,7 @@ public class LoginSuccess extends HttpServlet {protected void service(HttpServle
     
     Member login_member= new memberDAO().login(member);
     
-    if(id.equals("admin") && pw.equals("1234")) {
+    if(login_member != null) {
     	//로그인 성공
     	System.out.println("로그인 성공");
     	HttpSession session = request.getSession();
