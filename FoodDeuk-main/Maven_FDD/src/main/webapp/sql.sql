@@ -8,7 +8,9 @@ CREATE TABLE t_user
     joined_at    DATE              NOT NULL, 
      PRIMARY KEY (user_no)
 );
-
+DELETE 
+  FROM t_user
+ WHERE USER_No=5;
 -- 테이블 Comment 설정 SQL - t_user
 COMMENT ON TABLE t_user IS '사용자';
 
@@ -26,7 +28,9 @@ COMMENT ON COLUMN t_user.user_addr IS '사용자 주소';
 
 -- 컬럼 Comment 설정 SQL - t_user.joined_at
 COMMENT ON COLUMN t_user.joined_at IS '사용자 가입일자';
-
+DELETE 
+  FROM t_user
+ WHERE USER_No=5;
 CREATE SEQUENCE t_user_SEQ
 START WITH 1
 INCREMENT BY 1;
