@@ -42,7 +42,7 @@
             display: -webkit-box;
             -webkit-line-clamp: 2;
             -webkit-box-orient: vertical;
-            overflow: hidden;
+            overflow: hidden;u89u
             text-overflow: ellipsis;
         }
         #list a {
