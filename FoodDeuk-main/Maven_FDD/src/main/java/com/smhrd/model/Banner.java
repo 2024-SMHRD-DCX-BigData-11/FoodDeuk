@@ -10,10 +10,12 @@ import lombok.ToString;
 @Setter
 @ToString
 public class Banner {
-	private String res_img;
+	private String res_image;
     private String res_name;
+    private String res_phone;
     private String menu_name;
-    private int price;
+    private int menu_price;
+    private double ratings;
 
     // 기본 생성자
     public Banner() {}

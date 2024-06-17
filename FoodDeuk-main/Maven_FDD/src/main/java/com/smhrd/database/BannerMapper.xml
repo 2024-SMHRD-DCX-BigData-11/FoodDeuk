@@ -3,9 +3,10 @@
   PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
   "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.smhrd.database.BannerMapper">
-    <select id="selectBannerData" resultType="com.smhrd.model.Banner">
-        SELECT r.res_img, r.res_name, m.menu_name, m.price
+    <select id="selectBannerData" resultType="Banner">
+        SELECT r.res_image AS res_image, r.res_name AS res_name ,r.res_phone AS res_phone, m.menu_name AS menu_name, m.menu_price AS menu_price, re.ratings AS ratings
         FROM t_restaurant r
         JOIN t_menu m ON r.res_no = m.res_no
+        JOIN t_review re ON r.res_no = re.res_no
     </select>
 </mapper>

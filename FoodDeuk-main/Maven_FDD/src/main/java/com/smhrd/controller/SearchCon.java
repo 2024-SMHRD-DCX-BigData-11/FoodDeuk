@@ -10,6 +10,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.smhrd.listener.MyAppListener;
 import com.smhrd.model.Menu;
 import com.smhrd.model.MenuDAO;
 import com.smhrd.model.Restaurant;
@@ -27,8 +28,6 @@ public class SearchCon extends HttpServlet {
 		String search = request.getParameter("search");
 		String upperSearch = request.getParameter("upperSearch");
 		String searchType = request.getParameter("searchType");
-		System.out.println("upperSearch : " + upperSearch);
-		System.out.println("searchType : " + searchType);
 
 		int upperPrice = Integer.MAX_VALUE;
 
@@ -40,7 +39,6 @@ public class SearchCon extends HttpServlet {
 		System.out.println("search : " + search);
 		List<Restaurant> searchResults = null;
 		if ("menu".equals(searchType)) {
-			System.out.println("dd");
 			if (upperPrice == Integer.MAX_VALUE) {
 				SearchDAO dao = new SearchDAO();
 				searchResults = dao.searchByMenu(search);
@@ -62,6 +60,10 @@ public class SearchCon extends HttpServlet {
 				menu.setMenu_price(upperPrice);
 				searchResults = dao.listByHighPrice(menu);
 			}
+		}
+		
+		for (Restaurant restaurant : searchResults) {
+			restaurant.setMenus(MyAppListener.restaurants.get(restaurant.getRes_no()).getMenus());
 		}
 
 		ObjectMapper mapper = new ObjectMapper();

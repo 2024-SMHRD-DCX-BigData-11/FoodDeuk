@@ -1,6 +1,8 @@
 package com.smhrd.model;
 
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 import lombok.AllArgsConstructor;
@@ -26,5 +28,13 @@ public class Restaurant {
 	
 	public void addMenu(Menu menu) {
 		this.menus.put(menu.getMenu_no(), menu);
+	}
+
+	public void setMenus(Map<Integer, Menu> menus) {
+		this.menus = menus;
+	}
+	
+	public Map<Integer, Menu> getMenus() {
+		return menus;
 	}
 }
