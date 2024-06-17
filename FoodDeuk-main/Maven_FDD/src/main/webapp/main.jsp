@@ -151,10 +151,20 @@ rotateX(
 	-webkit-transform-style: preserve-3d;
 	transform-style: preserve-3d;
 }
-
+.upperSearch-box {
+		display: flex;
+		align-items: center;
+		margin-left: 10px;
+	}
+	.upperSearch-txt {
+		width: 150px;
+	}
+	#search-btn {
+		margin-left: 10px;
+	}
 .search-txt {
 	position: relative;
-	width: 600px;
+	width: 500px;
 }
 
 input {
@@ -193,6 +203,11 @@ img {
 				<input id="search-txt" class="search-txt" type="text" name="query"
 					placeholder="검색어를 입력하세요"> <img
 					src="https://s3.ap-northeast-2.amazonaws.com/cdn.wecode.co.kr/icon/search.png">
+					<form class="upperSearch-box" action="search" method="get">
+					<input id="upperSearch-txt" class="upperSearch-txt" type="text"
+						name="query" placeholder="상한가 지정"> <img
+						src="https://s3.ap-northeast-2.amazonaws.com/cdn.wecode.co.kr/icon/search.png">
+				</form>
 				<button id="search-btn" type="button">검색</button>
 			</form>
 			<%
@@ -219,13 +234,8 @@ img {
 	<div class="container">
 		<div class="map-container">
 			<div class="recommendation-container">
-				<div class="flip-horizontal-bottom">메뉴</div>
+				<div class="flip-horizontal-bottom">=메뉴</div>
 				<button class="recommendation-button">음식추천</button>
-				<form class="upperSearch-box" action="search" method="get">
-					<input id="upperSearch-txt" class="upperSearch-txt" type="text"
-						name="query" placeholder="상한가 지정"> <img
-						src="https://s3.ap-northeast-2.amazonaws.com/cdn.wecode.co.kr/icon/search.png">
-				</form>
 				<button class="low-price-button">최저가</button>
 			</div>
 			<div id="map"></div>
