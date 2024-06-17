@@ -65,7 +65,22 @@
           0 -1px 0 #fff,
           0 1px 0 #fff;
     }
-    
+    .banner-container {
+            display: flex;
+            overflow-x: scroll;
+        }
+        .banner {
+            flex: 0 0 auto;
+            width: 200px;
+            margin-right: 20px;
+            border: 1px solid #ccc;
+            padding: 10px;
+            text-align: center;
+        }
+        .banner img {
+            width: 100%;
+            height: auto;
+        }
     .container {
       display: flex;
       flex-wrap: wrap; 
@@ -228,13 +243,7 @@
 			</div>
 			<div id="map"></div>
 		</div>
-		<div class="banner-container">
-			<div class="banner">배너 1</div>
-			<div class="banner">배너 2</div>
-			<div class="banner">배너 3</div>
-			<div class="banner">배너 4</div>
-			<div class="banner">배너 5</div>
-		</div>
+		<div class="banner-container" id="banner-container"></div>
 	</div>
 
 	<script
@@ -306,5 +315,24 @@
     })
  // 메뉴 부분 선택
   </script>
+  <script>
+        fetch('/BannerCon')
+            .then(response => response.json())
+            .then(data => {
+                const bannerContainer = document.getElementById('banner-container');
+                data.forEach(banner => {
+                    const bannerDiv = document.createElement('div');
+                    bannerDiv.classList.add('banner');
+                    bannerDiv.innerHTML = `
+                        <img src="${banner.res_img}" alt="${banner.res_name}">
+                        <h3>${banner.res_name}</h3>
+                        <p>${banner.menu_name}</p>
+                        <p>${banner.price}원</p>
+                    `;
+                    bannerContainer.appendChild(bannerDiv);
+                });
+            })
+            .catch(error => console.error('Error fetching banner data:', error));
+    </script>
 </body>
 </html>
