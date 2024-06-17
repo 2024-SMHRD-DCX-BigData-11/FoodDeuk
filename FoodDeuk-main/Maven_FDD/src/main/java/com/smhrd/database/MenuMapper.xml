@@ -12,5 +12,5 @@
         SELECT DISTINCT(res_no) FROM t_menu WHERE menu_price <= #{menu_price} AND menu_name LIKE '%' || #{menu_name} || '%'
     )
     ]]>
-</select>
+    </select>
 </mapper>

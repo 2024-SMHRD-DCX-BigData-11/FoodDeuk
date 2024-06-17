@@ -184,6 +184,10 @@
 			class="container d-flex flex-wrap justify-content-between align-items-center">
 			<h1 class="mb-0">푸드득</h1>
 			<form class="search-box" action="search" method="get">
+			<select id="search-type" name="searchType">
+       			 <option value="menu">메뉴 검색</option>
+       			 <option value="category">카테고리 검색</option>
+   			 </select>
 				<input id="search-txt" class="search-txt" type="text" name="query"
 					placeholder="검색어를 입력하세요"> <img
 					src="https://s3.ap-northeast-2.amazonaws.com/cdn.wecode.co.kr/icon/search.png">
@@ -248,7 +252,7 @@
     	$.ajax({
 			// 요청경로
 			url : 'SearchCon',
-			data : {search: $('#search-txt').val(), upperSearch: $('#upperSearch-txt').val()},
+			data : {search: $('#search-txt').val(), upperSearch: $('#upperSearch-txt').val(), searchType: $('#search-type').val()},
 			type : 'GET',
 			success : function(data) {
 				//console.log(data);

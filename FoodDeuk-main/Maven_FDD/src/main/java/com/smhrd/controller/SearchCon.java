@@ -26,7 +26,9 @@ public class SearchCon extends HttpServlet {
 
 		String search = request.getParameter("search");
 		String upperSearch = request.getParameter("upperSearch");
+		String searchType = request.getParameter("searchType");
 		System.out.println("upperSearch : " + upperSearch);
+		System.out.println("searchType : " + searchType);
 
 		int upperPrice = Integer.MAX_VALUE;
 
@@ -36,18 +38,30 @@ public class SearchCon extends HttpServlet {
 		}
 
 		System.out.println("search : " + search);
-
 		List<Restaurant> searchResults = null;
-
-		if (upperPrice == Integer.MAX_VALUE) {
-			SearchDAO dao = new SearchDAO();
-			searchResults = dao.searchByMenu(search);
-		} else {
-			MenuDAO dao = new MenuDAO();
-			Menu menu = new Menu();
-			menu.setMenu_name(search);
-			menu.setMenu_price(upperPrice);
-			searchResults = dao.listByHighPrice(menu);
+		if ("menu".equals(searchType)) {
+			System.out.println("dd");
+			if (upperPrice == Integer.MAX_VALUE) {
+				SearchDAO dao = new SearchDAO();
+				searchResults = dao.searchByMenu(search);
+			} else {
+				MenuDAO dao = new MenuDAO();
+				Menu menu = new Menu();
+				menu.setMenu_name(search);
+				menu.setMenu_price(upperPrice);
+				searchResults = dao.listByHighPrice(menu);
+			}
+		} else if ("category".equals(searchType)) {
+			if (upperPrice == Integer.MAX_VALUE) {
+				SearchDAO dao = new SearchDAO();
+				searchResults = dao.searchByCategory(search);
+			} else {
+				MenuDAO dao = new MenuDAO();
+				Menu menu = new Menu();
+				menu.setMenu_name(search);
+				menu.setMenu_price(upperPrice);
+				searchResults = dao.listByHighPrice(menu);
+			}
 		}
 
 		ObjectMapper mapper = new ObjectMapper();
