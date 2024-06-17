@@ -45,6 +45,7 @@ select * from t_user;
 --    FROM DUAL;
 --END;
 -- 테이블 생성 SQL - t_review
+DROP TABLE t_review;
 CREATE TABLE t_review
 (
     review_no         NUMBER(18, 0)    NOT NULL, 
@@ -56,7 +57,18 @@ CREATE TABLE t_review
     r_date       DATE             NOT NULL, 
      PRIMARY KEY (review_no)
 );
-
+DECLARE
+  v_res_no t_restaurant.res_no%TYPE;
+BEGIN
+  FOR i IN (SELECT res_no FROM t_restaurant)
+  LOOP
+    v_res_no := i.res_no;
+    -- 여기서 원하는 작업 수행
+    INSERT INTO t_review (review_no, res_no, user_no, filename, review_content, ratings, r_date)
+VALUES (t_review_SEQ.nextval, v_res_no, 321, '포켓몬 (1).png', 'test 데이터', 4.5, TO_DATE('2024-06-17', 'YYYY-MM-DD'));
+  END LOOP;
+END;
+--테스트 데이터 생성
 -- Auto Increment를 위한 Sequence 추가 SQL - t_review.review_no
 CREATE SEQUENCE t_review_SEQ
 START WITH 1

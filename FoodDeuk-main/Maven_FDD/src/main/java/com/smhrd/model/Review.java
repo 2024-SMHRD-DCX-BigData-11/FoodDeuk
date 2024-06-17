@@ -22,7 +22,6 @@ public class Review {
 	}
 
 
-
 	private int review_no;
 	private int res_no;
 	private int user_no;

@@ -1,3 +1,4 @@
+<%@page import="org.apache.ibatis.reflection.SystemMetaObject"%>
 <%@page import="com.smhrd.model.Review"%>
 <%@page import="com.smhrd.model.ReviewDAO"%>
 <%@page import="com.smhrd.model.Member"%>
@@ -83,10 +84,11 @@
         <table id="list">
             
             <%
-                ReviewDAO reviewDAO = new ReviewDAO();
-                List<Review> reviews = reviewDAO.getAllReviews();
-                for (Review review : reviews) {
-            %>
+    ReviewDAO reviewDAO = new ReviewDAO();
+    List<Review> reviews = reviewDAO.getAllReviews();
+    //reviews 안에 리뷰들을 못 불러옴
+    for (Review review : reviews) {
+%>
            
                <!-- <td><%= review.getReview_no() %></td>
                 <td><%= review.getRes_no() %></td>-->

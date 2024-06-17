@@ -1,99 +1,107 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
-<%@page import="com.smhrd.model.Member"%>
-<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
+<%@ page import="com.smhrd.model.Member" %>
+<!DOCTYPE html>
 <html>
 <head>
-  <title>리뷰 작성</title>
-  <meta charset="utf-8" />
-  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-  <style>
+<meta charset="UTF-8">
+<title>리뷰 작성</title>
+<style>
     #board {
-      background-color: #FFF5E1; /* 노란색 배경 */
-      padding: 20px;
+        max-width: 800px;
+        margin: 50px auto;
+        padding: 20px;
+        border: 1px solid #ddd;
+        border-radius: 5px;
+        box-shadow: 0 2px 4px rgba(0,0,0,0.1);
     }
 
-    table#list {
-      width: 100%;
-      border-collapse: collapse;
-      font-size: 16px;
+    #board h1 {
+        color: #333;
+        text-align: center;
+        margin-bottom: 30px;
     }
 
-    table#list td {
-      padding: 10px;
-      border-bottom: 1px solid #FFB84C; /* 주황색 테두리 */
+    #board table {
+        width: 100%;
+        border-collapse: collapse;
     }
 
-    table#list input[type="text"], table#list textarea {
-      width: 100%;
-      padding: 5px;
-      font-size: 14px;
-      border: 1px solid #FFB84C; /* 주황색 테두리 */
+    #board table td {
+        padding: 10px;
+        border-bottom: 1px solid #ddd;
     }
 
-    table#list input[type="reset"], table#list input[type="submit"] {
-      background-color: #FFB84C; /* 주황색 버튼 */
-      color: white;
-      padding: 10px 20px;
-      border: none;
-      cursor: pointer;
-      border-radius: 4px;
-      float: right; /* 버튼을 오른쪽으로 정렬 */
+    #board table input[type="text"],
+    #board table textarea {
+        width: 100%;
+        padding: 10px;
+        border: 1px solid #ddd;
+        border-radius: 5px;
     }
-  </style>
+
+    #board table input[type="reset"],
+    #board table input[type="submit"] {
+        padding: 10px 20px;
+        background-color: #0056b3;
+        color: white;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+    }
+
+    #board table input[type="reset"]:hover,
+    #board table input[type="submit"]:hover {
+        background-color: #004494;
+    }
+</style>
 </head>
 <body>
 <%
-        Member login_member = (Member)session.getAttribute("login_member");
-		if(login_member==null){
-      %> <script>
+    Member login_member = (Member)session.getAttribute("login_member");
+    if(login_member==null){
+%>
+    <script>
         alert("로그인이 필요한 기능입니다.");
         window.location.href = "ReviewMain.jsp"; // 로그인 페이지로 이동
     </script>
 <%
     } else {
 %>
-  <!-- Q16. 게시글 작성 기능(작성된 게시글은 DB에 저장) - 파일업로드 cos.jar 사용 -->
-  <div id="board">
-    <form action="ReviewCon" enctype="multipart/form-data" method="post">
-      <table id="list">
-        <tr>
-          <td>식당</td>
-          <td>식당 고유 번호 가져오기</td>
-        </tr>
-        <tr>
-          <td>작성자</td>
-          <td><%=login_member.getUser_id() %></td>
-        </tr>
-        <tr>
-          <td colspan="2">내용</td>
-        </tr>
-        <tr>
-          <td colspan="2">
-            <input type="file" name="filename" style="float: right;">
-            <textarea name="review_content" rows="10" style="resize: none;"></textarea>
-          </td>
-        </tr>
-        <tr>
-          <td>평점</td>
-          <td><input type="text" value="0~5" name="ratings"></td>
-        </tr>
-        <tr>
-          <td colspan="2">
-            <input type="reset" value="초기화">
-            <input type="submit" value="작성하기">
-          </td>
-        </tr>
-      </table>
-    </form>
-  </div>
+    <div id="board">
+        <h1>리뷰 작성</h1>
+        <form action="ReviewCon" enctype="multipart/form-data" method="post">
+            <table>
+                <tr>
+                    <td>식당</td>
+                    <td>식당 고유 번호 가져오기</td>
+                </tr>
+                <tr>
+                    <td>작성자</td>
+                    <td><%=login_member.getUser_id() %></td>
+                </tr>
+                <tr>
+                    <td colspan="2">내용</td>
+                </tr>
+                <tr>
+                    <td colspan="2">
+                        <input type="file" name="filename" style="float: right;">
+                        <textarea name="review_content" rows="10" style="resize: none;"></textarea>
+                    </td>
+                </tr>
+                <tr>
+                    <td>평점</td>
+                    <td><input type="text" value="0~5" name="ratings"></td>
+                </tr>
+                <tr>
+                    <td colspan="2">
+                        <input type="reset" value="초기화">
+                        <input type="submit" value="작성하기">
+                    </td>
+                </tr>
+            </table>
+        </form>
+    </div>
 <%} %>
-  <!-- Scripts -->
-  <script src="assets/js/jquery.min.js"></script>
-  <script src="assets/js/jquery.scrolly.min.js"></script>
-  <script src="assets/js/jquery.scrollex.min.js"></script>
-  <script src="assets/js/skel.min.js"></script>
-  <script src="assets/js/util.js"></script>
-  <!--[if lte IE 8]><script src="assets/js/ie/respond.min.js"></script><![endif]-->
-  <script src="assets/js/main.js"></script>
 </body>
 </html>
