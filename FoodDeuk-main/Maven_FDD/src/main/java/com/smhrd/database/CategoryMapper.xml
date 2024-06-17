@@ -6,4 +6,7 @@
 	<select id="listAll" resultType="com.smhrd.model.Category">
   		SELECT * FROM t_category
     </select>
+	<select id="listAll2" resultType="com.smhrd.model.Category">
+  		SELECT (SELECT category_name FROM t_category WHERE category_no=category) AS category_name, COUNT(*) AS count FROM t_restaurant_category GROUP BY category
+    </select>
 </mapper>

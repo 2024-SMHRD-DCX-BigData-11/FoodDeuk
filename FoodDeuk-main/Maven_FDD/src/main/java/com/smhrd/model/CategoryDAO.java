@@ -16,4 +16,11 @@ public class CategoryDAO {
 		session.close();
 		return results;
 	}
+
+	public List<Category> listAll2() {
+		SqlSession session = sqlSessionFactory.openSession(true);
+		List<Category> results = session.selectList("com.smhrd.database.CategoryMapper.listAll2");
+		session.close();
+		return results;
+	}
 }

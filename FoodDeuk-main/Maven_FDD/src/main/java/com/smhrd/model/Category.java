@@ -12,4 +12,7 @@ import lombok.Setter;
 public class Category {
 	private int category_no;
 	private String category_name;
+	
+	// 가중치용
+	private int count;
 }

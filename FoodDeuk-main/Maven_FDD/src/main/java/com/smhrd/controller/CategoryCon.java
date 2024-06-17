@@ -26,13 +26,32 @@ public class CategoryCon extends HttpServlet {
 		
 		List<String> result = new ArrayList<>();
 		
-		List<Category> listCategory = new CategoryDAO().listAll();
+		int total = 0, currentTotal = 0;
+		
+		List<Category> listCategory = new CategoryDAO().listAll2();
+		
+		for (Category category : listCategory) {
+			total += category.getCount();
+		}
+		
+		int randomValue = (int) (Math.random() * total);
+
+		for (Category category : listCategory) {
+			currentTotal += category.getCount();
+			if (currentTotal > randomValue) {
+				result.add(category.getCategory_name());
+				break;
+			}
+		}
+		
 		Collections.shuffle(listCategory);
-		listCategory = listCategory.subList(0, 10);
+		listCategory = listCategory.subList(0, 9);
 		
 		for (Category category : listCategory) {
 			result.add(category.getCategory_name());
 		}
+		
+		System.out.println(result);
 
 		ObjectMapper mapper = new ObjectMapper();
 		String jsonResult = mapper.writeValueAsString(result);
