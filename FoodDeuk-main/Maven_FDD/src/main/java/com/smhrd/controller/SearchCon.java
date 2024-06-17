@@ -8,9 +8,10 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.smhrd.model.Menu;
+import com.smhrd.model.MenuDAO;
 import com.smhrd.model.Restaurant;
 import com.smhrd.model.SearchDAO;
 
@@ -24,11 +25,30 @@ public class SearchCon extends HttpServlet {
 		response.setContentType("application/json;charset=UTF-8");
 
 		String search = request.getParameter("search");
-		
+		String upperSearch = request.getParameter("upperSearch");
+		System.out.println("upperSearch : " + upperSearch);
+
+		int upperPrice = Integer.MAX_VALUE;
+
+		try {
+			upperPrice = Integer.parseInt(upperSearch);
+		} catch (NumberFormatException e) {
+		}
+
 		System.out.println("search : " + search);
 
-		SearchDAO dao = new SearchDAO();
-		List<Restaurant> searchResults = dao.searchByMenu(search);
+		List<Restaurant> searchResults = null;
+
+		if (upperPrice == Integer.MAX_VALUE) {
+			SearchDAO dao = new SearchDAO();
+			searchResults = dao.searchByMenu(search);
+		} else {
+			MenuDAO dao = new MenuDAO();
+			Menu menu = new Menu();
+			menu.setMenu_name(search);
+			menu.setMenu_price(upperPrice);
+			searchResults = dao.listByHighPrice(menu);
+		}
 
 		ObjectMapper mapper = new ObjectMapper();
 		String jsonResult = mapper.writeValueAsString(searchResults);

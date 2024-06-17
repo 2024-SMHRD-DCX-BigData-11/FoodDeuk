@@ -24,7 +24,7 @@ public class SearchDAO {
         }
 
         // 카테고리로 검색하는 메서드
-        public List<Restaurant> searchByCategory(String res_no) {
+        public List<Restaurant> searchByCategory(int res_no) {
             SqlSession session = sqlSessionFactory.openSession(true);
             List<Restaurant> results = session.selectList("com.smhrd.database.SearchMapper.searchByCategory", res_no);
             session.close();
