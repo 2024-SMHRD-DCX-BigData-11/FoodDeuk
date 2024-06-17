@@ -219,7 +219,7 @@
 		<div class="map-container">
 			<div class="recommendation-container">
 				<div id="flip_menu"></div>
-				<button class="recommendation-button">음식추천</button>
+				<button id="recommendation-button" class="recommendation-button">음식추천</button>
 				<button class="low-price-button">최저가</button>
 			</div>
 			<div id="map"></div>
@@ -272,21 +272,30 @@
 	var flip_menu = document.getElementById('flip_menu');
     
     listCategory = [];
-    $.ajax({
-		// 요청경로
-		url : 'CategoryCon',
-		type : 'GET',
-		success : function(data) {
-			data.forEach(value => {
-				listCategory.push(value);
-			})
-			flip_menu.innerText = listCategory.pop();
-			flip_menu.classList.add('flip-horizontal-bottom');
-		},
-		error : function() {
-			alert('error');
-		}
-	})
+    
+    function recommendMenu() {
+	    $.ajax({
+			// 요청경로
+			url : 'CategoryCon',
+			type : 'GET',
+			success : function(data) {
+				data.forEach(value => {
+					listCategory.push(value);
+				})
+				flip_menu.innerText = listCategory.pop();
+				flip_menu.classList.add('flip-horizontal-bottom');
+			},
+			error : function() {
+				alert('error');
+			}
+		})
+    }
+    recommendMenu();
+    $('#recommendation-button').click(() => {
+    	flip_menu.classList.remove('flip-horizontal-bottom');
+    	void flip_menu.offsetWidth; // 리플로우 트리거
+    	recommendMenu();
+    })
     
     flip_menu.addEventListener('animationiteration', () => {
     	flip_menu.innerText = listCategory.pop();
