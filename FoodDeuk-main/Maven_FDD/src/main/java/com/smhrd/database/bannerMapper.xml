@@ -5,7 +5,7 @@
 <mapper namespace="com.smhrd.database.BannerMapper">
     <select id="selectBannerData" resultType="com.smhrd.model.Banner">
         SELECT r.res_img, r.res_name, m.menu_name, m.price
-        FROM t_restaurants r
+        FROM t_restaurant r
         JOIN t_menu m ON r.res_no = m.res_no
     </select>
 </mapper>

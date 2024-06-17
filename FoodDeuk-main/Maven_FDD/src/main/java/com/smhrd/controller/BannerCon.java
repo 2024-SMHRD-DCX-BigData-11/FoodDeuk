@@ -23,6 +23,9 @@ public class BannerCon extends HttpServlet {
         BannerDAO dao = new BannerDAO();
         List<Banner> bannerData = dao.selectBannerData();
 
+        // 로그 추가
+        System.out.println("Banner data: " + bannerData);
+
         ObjectMapper mapper = new ObjectMapper();
         String jsonResult = mapper.writeValueAsString(bannerData);
         response.getWriter().write(jsonResult);

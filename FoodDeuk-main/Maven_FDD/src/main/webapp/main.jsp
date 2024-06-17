@@ -280,7 +280,31 @@
 				alert('error');
 			}
 		})
-    })
+		fetch('/BannerCon')
+        .then(response => {
+            if (!response.ok) {
+                throw new Error('Network response was not ok');
+            }
+            return response.json();
+        })
+        .then(data => {
+            console.log('Banner data:', data); // 데이터 출력
+            const bannerContainer = document.getElementById('banner-container');
+            bannerContainer.innerHTML = ''; // 기존 배너 초기화
+            data.forEach(banner => {
+                const bannerDiv = document.createElement('div');
+                bannerDiv.classList.add('banner');
+                bannerDiv.innerHTML = `
+                    <img src="${banner.res_img}" alt="${banner.res_name}">
+                    <h3>${banner.res_name}</h3>
+                    <p>${banner.menu_name}</p>
+                    <p>${banner.price}원</p>
+                `;
+                bannerContainer.appendChild(bannerDiv);
+            });
+        })
+        .catch(error => console.error('Error fetching banner data:', error));
+});
 	
 	var flip_menu = document.getElementById('flip_menu');
     
@@ -315,24 +339,5 @@
     })
  // 메뉴 부분 선택
   </script>
-  <script>
-        fetch('/BannerCon')
-            .then(response => response.json())
-            .then(data => {
-                const bannerContainer = document.getElementById('banner-container');
-                data.forEach(banner => {
-                    const bannerDiv = document.createElement('div');
-                    bannerDiv.classList.add('banner');
-                    bannerDiv.innerHTML = `
-                        <img src="${banner.res_img}" alt="${banner.res_name}">
-                        <h3>${banner.res_name}</h3>
-                        <p>${banner.menu_name}</p>
-                        <p>${banner.price}원</p>
-                    `;
-                    bannerContainer.appendChild(bannerDiv);
-                });
-            })
-            .catch(error => console.error('Error fetching banner data:', error));
-    </script>
 </body>
 </html>
