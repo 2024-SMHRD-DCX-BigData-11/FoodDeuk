@@ -11,7 +11,7 @@ import lombok.ToString;
 @ToString
 public class Search {
     private String menu_name;
-    private String res_no;
+    private int res_no;
     private String res_name;
     private String address;
 

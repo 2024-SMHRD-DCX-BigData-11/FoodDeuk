@@ -16,17 +16,17 @@ import com.smhrd.model.Review;
 public class SearchDAO {
 	SqlSessionFactory sqlSessionFactory = SqlSessionManager.getSqlSession();
         
-    	public List<Search> searchByMenu(String menu_name) {
+    	public List<Restaurant> searchByMenu(String menu_name) {
             SqlSession session = sqlSessionFactory.openSession(true);
-            List<Search> results = session.selectList("com.smhrd.database.MemberMapper.searchByMenu", menu_name);
+            List<Restaurant> results = session.selectList("com.smhrd.database.SearchMapper.searchByMenu", menu_name);
             session.close();
             return results;
         }
 
         // 카테고리로 검색하는 메서드
-        public List<Search> searchByCategory(String res_no) {
+        public List<Restaurant> searchByCategory(String res_no) {
             SqlSession session = sqlSessionFactory.openSession(true);
-            List<Search> results = session.selectList("com.smhrd.database.MemberMapper.searchByCategory", res_no);
+            List<Restaurant> results = session.selectList("com.smhrd.database.SearchMapper.searchByCategory", res_no);
             session.close();
             return results;
         }

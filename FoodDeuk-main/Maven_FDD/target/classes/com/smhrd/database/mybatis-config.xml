@@ -7,8 +7,11 @@
 	<!-- db.properties 파일 연결하기 -->
 	<properties resource="com/smhrd/database/db.properties" />
 	<typeAliases>
-		<typeAlias type="com.smhrd.model.Member" alias="Member" />
+		<typeAlias type="com.smhrd.model.Member" alias="Member"/>
 		<typeAlias type="com.smhrd.model.Review" alias="Review"/>
+		<typeAlias type="com.smhrd.model.Restaurant" alias="Restaurant"/>
+		<typeAlias type="com.smhrd.model.Menu" alias="Menu"/>
+		<typeAlias type="com.smhrd.model.Category" alias="Category"/>
 	</typeAliases>
 	<environments default="development">
 		<environment id="development">
@@ -24,9 +27,12 @@
 
 	<!-- sql문들을 정의해주는 mapper.xml을 계속해서 만들거데 어디에 있는지 경로를 지정해주는 태그 -->
 	<mappers>
-		<mapper resource="com/smhrd/database/MemberMapper.xml" />
+		<mapper resource="com/smhrd/database/MemberMapper.xml"/>
 		<mapper resource="com/smhrd/database/ReviewMapper.xml"/>
 		<mapper resource="com/smhrd/database/SearchMapper.xml"/>
+		<mapper resource="com/smhrd/database/RestaurantMapper.xml"/>
+		<mapper resource="com/smhrd/database/MenuMapper.xml"/>
+		<mapper resource="com/smhrd/database/CategoryMapper.xml"/>
 	</mappers>
 
 </configuration>

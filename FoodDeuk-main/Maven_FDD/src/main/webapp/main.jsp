@@ -8,6 +8,7 @@
   <title>푸드득</title>
   <script type="text/javascript" src="http://openapi.map.naver.com/openapi/v3/maps.js?ncpClientId=0x06a17qwi"></script>
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
   <style>
     @font-face {
       font-family: 'Jalnan';
@@ -163,9 +164,9 @@
     <div class="container d-flex flex-wrap justify-content-between align-items-center">
       <h1 class="mb-0">푸드득</h1>
       <form class="search-box" action="search" method="get">
-       <input class="search-txt" type="text" name="query" placeholder="검색어를 입력하세요">
+       <input id="search-txt" class="search-txt" type="text" name="query" placeholder="검색어를 입력하세요">
        <img src="https://s3.ap-northeast-2.amazonaws.com/cdn.wecode.co.kr/icon/search.png">
-       <button class="search-btn" type="submit">검색</button>
+       <button id="search-btn" type="button">검색</button>
     </form>
       <%
         Member login_member = (Member)session.getAttribute("login_member");
@@ -207,7 +208,34 @@
       center: new naver.maps.LatLng(34.9683954, 127.4841841),
       zoom: 17
     };
-    var map = new naver.maps.Map('map', mapOptions);
+  	var map = new naver.maps.Map('map', mapOptions);
+
+    var markers = []
+    
+    $('#search-btn').click(() => {
+    	$.ajax({
+			// 요청경로
+			url : 'SearchCon',
+			data : {search: $('#search-txt').val()},
+			type : 'GET',
+			success : function(data) {
+				//console.log(data);
+				markers.forEach(marker => {
+					marker.setMap(null);
+				})
+				data.forEach(value => {
+					var marker = new naver.maps.Marker({
+					    position: new naver.maps.LatLng(value.lat, value.lng),
+					    map: map
+					});
+					markers.push(marker);
+				})
+			},
+			error : function() {
+				alert('error');
+			}
+		})
+    })
  // 메뉴 부분 선택
   </script>
 </body>
