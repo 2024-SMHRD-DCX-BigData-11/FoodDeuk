@@ -65,7 +65,6 @@
     		        <%} }%>
         <div class="buttons">
             <a href="main.jsp"><button id="writer">홈으로가기</button></a>
-            <a href="ReviewWrite.jsp"><button id="writer">리뷰 작성하기</button></a>
         </div>
     </div>
     <script src="assets/js/jquery.min.js"></script>
