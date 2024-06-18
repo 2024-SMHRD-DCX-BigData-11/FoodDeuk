@@ -94,53 +94,87 @@ body {
     var markers = []
     
     $('#search-btn').click(() => {
-    	$.ajax({
+		$.ajax({
 			// 요청경로
-			url : 'SearchCon',
-			data : {search: $('#search-txt').val(), upperSearch: $('#upperSearch-txt').val(), searchType: $('#search-type').val(), lat: latitude, lng: longitude},
-			type : 'GET',
-			success : function(data) {
+			url: 'SearchCon',
+			data: {
+				search: $('#search-txt').val(),
+				upperSearch: $('#upperSearch-txt').val(),
+				searchType: $('#search-type').val(),
+				lat: latitude,
+				lng: longitude
+			},
+			type: 'GET',
+			success: function (data) {
 				console.log(data);
 				markers.forEach(marker => {
 					marker.setMap(null);
 				})
-	            const bannerContainer = document.getElementById('banner-container');
-	            bannerContainer.innerHTML = ''; // 기존 배너 초기화
-	            
+				const bannerContainer = document.getElementById('banner-container');
+				bannerContainer.innerHTML = ''; // 기존 배너 초기화
+
 				data.slice(0, 10).forEach(value => {
 					var marker = new naver.maps.Marker({
-					    position: new naver.maps.LatLng(value.lat, value.lng),
-					    map: map
+						position: new naver.maps.LatLng(value.lat, value.lng),
+						map: map
 					});
 					markers.push(marker);
 
-		            const bannerDiv = document.createElement('div');
-		            bannerDiv.classList.add('banner');
-		            temp = '';
-		            
-		            temp += `<div class='banner-container-side'><div style ="width: 150px;"><img src="${value.res_image}" alt="Banner"></div>`;
-		            temp += `<div><h3>${value.res_name}</h3></div></div>`;
-		            Object.values(value.menus).forEach(value_ => {
-		                temp += `<div class="product-container"><div><p>${value_.menu_name}</p></div>`;
-		            	temp += `<div><p>${value_.menu_price}원</p></div></div>`;	  
-		            });
-		            
+					const bannerDiv = document.createElement('div');
+					bannerDiv.classList.add('banner');
+					let temp = '';
 
-	                const moreButton = document.createElement('button');
-	                moreButton.textContent = '메뉴 더보기';
-	                moreButton.addEventListener('click', () => {
-	                    menuContainer.classList.toggle('expanded');
-	                    moreButton.textContent = menuContainer.classList.contains('expanded') ? '메뉴 접기' : '메뉴 더보기';
-	                });
-			        bannerDiv.innerHTML = temp;
-		            bannerContainer.appendChild(bannerDiv);
+					temp += `<div class='banner-container-side'><div style="width: 150px;"><img src="${value.res_image}" alt="Banner"></div>`;
+					temp += `<div><h3>${value.res_name}</h3></div></div>`;
+					
+					const menus = Object.values(value.menus);
+					menus.slice(0, 3).forEach(value_ => {
+						temp += `<div class="product-container"><div><p>${value_.menu_name}</p></div>`;
+						temp += `<div><p>${value_.menu_price}원</p></div></div>`;
+					});
+					
+					bannerDiv.innerHTML = temp;
+
+					// 메뉴 더보기 버튼 추가
+					const moreButton = document.createElement('button');
+					moreButton.textContent = '메뉴 더보기';
+					moreButton.classList.add('more-button');
+					moreButton.addEventListener('click', () => {
+						if (bannerDiv.classList.contains('expanded')) {
+							bannerDiv.classList.remove('expanded');
+							moreButton.textContent = '메뉴 더보기';
+							bannerDiv.querySelectorAll('.product-container').forEach((el, index) => {
+								if (index >= 3) el.remove();
+							});
+						} else {
+							bannerDiv.classList.add('expanded');
+							moreButton.textContent = '메뉴 접기';
+							menus.slice(3).forEach(value_ => {
+								const productContainer = document.createElement('div');
+								productContainer.classList.add('product-container');
+								productContainer.innerHTML = `<div><p>${value_.menu_name}</p></div><div><p>${value_.menu_price}원</p></div>`;
+								bannerDiv.insertBefore(productContainer, moreButton);
+							});
+						}
+					});
+					bannerDiv.appendChild(moreButton);
+
+					// 리뷰 작성 버튼 추가
+					const reviewButton = document.createElement('button');
+					reviewButton.textContent = '리뷰 작성';
+					reviewButton.classList.add('review-button');
+					reviewButton.addEventListener('click', () => {
+						window.location.href = `WriteReview.jsp?resId=${value.res_id}`;
+					});
+					bannerDiv.appendChild(reviewButton);
+					bannerContainer.appendChild(bannerDiv);
 				})
 			},
-			error : function() {
+			error: function () {
 				alert('error');
 			}
 		})
-});
+	});
 	
 	var flip_menu = document.getElementById('flip_menu');
     
