@@ -164,7 +164,7 @@ body {
 					reviewButton.textContent = '리뷰 작성';
 					reviewButton.classList.add('review-button');
 					reviewButton.addEventListener('click', () => {
-						window.location.href = `WriteReview.jsp?resId=${value.res_id}`;
+						window.location.href = `ReviewWrite.jsp?res_no=${value.res_no}`;
 					});
 					bannerDiv.appendChild(reviewButton);
 					bannerContainer.appendChild(bannerDiv);

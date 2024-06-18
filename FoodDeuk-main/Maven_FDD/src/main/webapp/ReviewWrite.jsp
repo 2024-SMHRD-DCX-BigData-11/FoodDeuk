@@ -36,12 +36,13 @@ body {
             <table>
                 <tr>
                     <td>식당</td>
-                    <td>식당 고유 번호 가져오기</td>
+                    <td><%=request.getParameter("res_no")%></td>
+                    <input type="hidden" name="res_no" value="<%=request.getParameter("res_no") %>">
                 </tr>
                 <tr>
                     <td>작성자</td>
                     <td><%=login_member.getUser_id() %></td>
-                    <input type="hidden" name="user_id" value="<%=login_member.getUser_no() %>">
+                    <input type="hidden" name="user_no" value="<%=login_member.getUser_no() %>">
                 </tr>
                 <tr>
                     <td colspan="2">내용</td>

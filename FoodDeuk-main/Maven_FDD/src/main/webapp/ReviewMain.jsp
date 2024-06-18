@@ -23,26 +23,46 @@
         <table id="list">
             
             <%
-            int res_no = 12784252;
+            String res_no = request.getParameter("res_no");
     ReviewDAO reviewDAO = new ReviewDAO();
-    List<Review> reviews = reviewDAO.detailReviews(res_no);
-    for (Review review : reviews) {
-%>
-           
-               <!-- <td><%= review.getReview_no() %></td>
-                <td><%= review.getRes_no() %></td>-->
-            <tr>
-                <td><%= review.getUser_no() %></td>
-                <td><%= review.getR_date() %></td>
-                <td></td>
-             </tr>
-             <tr>
-                <td><img src="./images/<%= review.getFilename() %>"></td>
-                <td><%= review.getReview_content()%></td>
-                <td><%= review.getRatings() %></td>     
-            </tr>
-            <% } %>
-        </table>
+    if(res_no==null){
+    	List<Review> reviews = reviewDAO.getAllReviews();
+    	for (Review review : reviews) {
+    		%>
+    		           
+    		               <!-- <td><%= review.getReview_no() %></td>
+    		                <td><%= review.getRes_no() %></td>-->
+    		            <tr>
+    		                <td><%= review.getUser_no() %></td>
+    		                <td><%= review.getR_date() %></td>
+    		                <td></td>
+    		             </tr>
+    		             <tr>
+    		                <td><img src="./images/<%= review.getFilename() %>"></td>
+    		                <td><%= review.getReview_content()%></td>
+    		                <td><%= review.getRatings() %></td>     
+    		            </tr>
+    		            <% } %>
+    		        </table>
+    <%}else{
+    	List<Review> reviews = reviewDAO.detailReviews(res_no);
+    	for (Review review : reviews) {
+    		%>
+    		           
+    		               <!-- <td><%= review.getReview_no() %></td>
+    		                <td><%= review.getRes_no() %></td>-->
+    		            <tr>
+    		                <td><%= review.getUser_no() %></td>
+    		                <td><%= review.getR_date() %></td>
+    		                <td></td>
+    		             </tr>
+    		             <tr>
+    		                <td><img src="./images/<%= review.getFilename() %>"></td>
+    		                <td><%= review.getReview_content()%></td>
+    		                <td><%= review.getRatings() %></td>     
+    		            </tr>
+    		        </table>
+    		        <%} }%>
         <div class="buttons">
             <a href="main.jsp"><button id="writer">홈으로가기</button></a>
             <a href="ReviewWrite.jsp"><button id="writer">리뷰 작성하기</button></a>

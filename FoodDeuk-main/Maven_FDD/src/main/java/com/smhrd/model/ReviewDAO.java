@@ -28,7 +28,7 @@ public class ReviewDAO {
         return reviews;
     }
     
-    public List<Review> detailReviews(int res_no) {
+    public List<Review> detailReviews(String res_no) {
         
         SqlSession session = sqlSessionFactory.openSession(true);
         try {

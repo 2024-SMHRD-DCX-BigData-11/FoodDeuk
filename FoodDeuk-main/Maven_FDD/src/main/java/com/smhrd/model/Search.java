@@ -14,6 +14,8 @@ public class Search {
     private int menu_price;
     private double lat;
     private double lng;
+    private int res_no;
+    private String res_image;
 
     // 기본 생성자
     public Search() {}

@@ -29,17 +29,17 @@ public class ReviewCon extends HttpServlet {
 		String encoding = "UTF-8";
 		// 5. 중복제거
 		DefaultFileRenamePolicy rename = new DefaultFileRenamePolicy();
-
 		MultipartRequest multi;
+		int res_no = 0;
 		try {
 			multi = new MultipartRequest(request, path, maxSize, encoding, rename);
-			int res_no = Integer.parseInt(multi.getParameter("res_no"));
+			res_no = Integer.parseInt(multi.getParameter("res_no"));
 			int user_no = Integer.parseInt(multi.getParameter("user_no"));
 			String content = multi.getParameter("review_content");
 			String filename = multi.getFilesystemName("filename");
 			String ratings = multi.getParameter("ratings");
 
-			Review review = new Review(res_no,user_no,content, filename, ratings);
+			Review review = new Review(res_no, user_no, content, filename, ratings);
 
 			System.out.println(review.toString());
 
@@ -54,6 +54,6 @@ public class ReviewCon extends HttpServlet {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		response.sendRedirect("ReviewMain.jsp");
+		response.sendRedirect("ReviewMain.jsp?res_no=" + res_no);
 	}
 }
