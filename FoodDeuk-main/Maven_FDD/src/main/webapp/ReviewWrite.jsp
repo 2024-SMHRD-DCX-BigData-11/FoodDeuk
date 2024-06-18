@@ -55,7 +55,19 @@ body {
                 </tr>
                 <tr>
                     <td>평점</td>
-                    <td><input type="text" value="0~5" name="ratings"></td>
+                    <td><div class="star-rating space-x-4 mx-auto">
+	<input type="radio" id="5-stars" name="ratings" value="5" v-model="ratings"/>
+	<label for="5-stars" class="star pr-4">★</label>
+	<input type="radio" id="4-stars" name="ratings" value="4" v-model="ratings"/>
+	<label for="4-stars" class="star">★</label>
+	<input type="radio" id="3-stars" name="ratings" value="3" v-model="ratings"/>
+	<label for="3-stars" class="star">★</label>
+	<input type="radio" id="2-stars" name="ratings" value="2" v-model="ratings"/>
+	<label for="2-stars" class="star">★</label>
+	<input type="radio" id="1-star" name="ratings" value="1" v-model="ratings" />
+	<label for="1-star" class="star">★</label>
+</div><td>
+
                 </tr>
                 <tr>
                     <td colspan="2">
@@ -69,4 +81,8 @@ body {
     </div>
 <%} %>
 </body>
+<script type="text/javascript">
+
+
+</script>
 </html>
