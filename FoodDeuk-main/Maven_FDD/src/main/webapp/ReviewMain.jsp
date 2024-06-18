@@ -61,8 +61,8 @@
     		                <td><%= review.getReview_content()%></td>
     		                <td><%= review.getRatings() %></td>     
     		            </tr>
-    		        </table>
-    		        <%} }%>
+    		        
+    		        <%}%></table> <% }%>
         <div class="buttons">
             <a href="main.jsp"><button id="writer">홈으로가기</button></a>
         </div>
