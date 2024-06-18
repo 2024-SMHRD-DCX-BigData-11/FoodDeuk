@@ -217,7 +217,18 @@ body {
     flip_menu.addEventListener('animationiteration', () => {
     	flip_menu.innerText = listCategory.pop();
     })
- // 메뉴 부분 선택
+ // HTML에서 search-btn 버튼과 입력 필드 선택
+const searchBtn = document.getElementById('search-btn');
+const searchInput = document.querySelector('input[type="text"]');
+
+// 입력 필드에서 keyup 이벤트 리스너 등록
+searchInput.addEventListener('keyup', (event) => {
+  // 엔터키(keyCode 13)가 눌렸을 때
+  if (event.keyCode === 13) {
+    // search-btn 버튼 클릭 트리거
+    searchBtn.click();
+  }
+});
   </script>
 </body>
 </html>

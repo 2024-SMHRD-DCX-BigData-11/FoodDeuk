@@ -18,8 +18,8 @@
 }
 
 header {
-   background-color: #ADD8E6;
-   color: #fff;
+  background-color: #FFA500; /* 밝은 주황색 */
+  color: #fff;
 }
 
 header h1 {
