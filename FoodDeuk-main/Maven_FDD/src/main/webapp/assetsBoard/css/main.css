@@ -48,6 +48,7 @@ nav a {
     background-color: #FFA500; /* 밝은 주황색 */
     padding: 10px;
     border-radius: 5px;
+    width: 800px;
   }
 
   .search-box select, .search-box input {
