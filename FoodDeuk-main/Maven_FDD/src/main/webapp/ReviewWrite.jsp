@@ -36,7 +36,7 @@ body {
             <table>
                 <tr>
                     <td>식당</td>
-                    <td><%=request.getParameter("res_no")%></td>
+                    <td><%=request.getParameter("res_name")%></td>
                     <input type="hidden" name="res_no" value="<%=request.getParameter("res_no") %>">
                 </tr>
                 <tr>

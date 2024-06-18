@@ -137,18 +137,18 @@ body {
 
 					// 메뉴 더보기 버튼 추가
 					const moreButton = document.createElement('button');
-					moreButton.textContent = '메뉴 더보기';
+					moreButton.textContent = '더보기';
 					moreButton.classList.add('more-button');
 					moreButton.addEventListener('click', () => {
 						if (bannerDiv.classList.contains('expanded')) {
 							bannerDiv.classList.remove('expanded');
-							moreButton.textContent = '메뉴 더보기';
+							moreButton.textContent = '더보기';
 							bannerDiv.querySelectorAll('.product-container').forEach((el, index) => {
 								if (index >= 3) el.remove();
 							});
 						} else {
 							bannerDiv.classList.add('expanded');
-							moreButton.textContent = '메뉴 접기';
+							moreButton.textContent = '접기';
 							menus.slice(3).forEach(value_ => {
 								const productContainer = document.createElement('div');
 								productContainer.classList.add('product-container');
@@ -161,12 +161,22 @@ body {
 
 					// 리뷰 작성 버튼 추가
 					const reviewButton = document.createElement('button');
-					reviewButton.textContent = '리뷰 작성';
+					reviewButton.textContent = '리뷰작성';
 					reviewButton.classList.add('review-button');
 					reviewButton.addEventListener('click', () => {
 						window.location.href = `ReviewWrite.jsp?res_no=${value.res_no}`;
+						window.location.href = `ReviewWrite.jsp?res_name=${value.res_name}`;
 					});
 					bannerDiv.appendChild(reviewButton);
+					// 리뷰 보기 버튼 추가
+					const reviewMainButton = document.createElement('button');
+					reviewMainButton.textContent = '리뷰보기';
+					reviewMainButton.classList.add('review-main-button');
+					reviewMainButton.addEventListener('click', () => {
+						window.location.href = `ReviewMain.jsp?res_no=${value.res_no}`;
+					});
+					bannerDiv.appendChild(reviewMainButton);
+
 					bannerContainer.appendChild(bannerDiv);
 				})
 			},
