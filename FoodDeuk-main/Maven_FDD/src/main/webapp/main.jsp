@@ -120,7 +120,7 @@ body {
 						icon: {
 							content:         '<div class="marker">'+
 					        '<div class="marker_icon_area">'+
-					        '<img src="assetBoard/image/restaurant.png" width="34" height="34" alt="음식점" class="icon">'+
+					        '<img src="assetsBoard/image/restaurant.png" width="34" height="34" alt="음식점" class="icon">'+
 					        '</div>'+
 					        '<div class="marker_text_area">'+
 					        '<strong class="marker_title">'+
