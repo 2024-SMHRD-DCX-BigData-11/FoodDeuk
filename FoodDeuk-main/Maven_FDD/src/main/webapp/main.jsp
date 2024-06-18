@@ -9,30 +9,11 @@
 <title>푸드득</title>
 <script type="text/javascript"
 	src="http://openapi.map.naver.com/openapi/v3/maps.js?ncpClientId=0x06a17qwi"></script>
+<link rel="stylesheet" href="assetsBoard/css/main.css" />
 <link
 	href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css"
 	rel="stylesheet">
-<script
-	src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
-<style>
-@font-face {
-	font-family: 'Jalnan';
-	font-weight: normal;
-	font-style: normal;
-	src:
-		url('https://cdn.jsdelivr.net/gh/webfontworld/goodchoice/Jalnan.eot');
-	src:
-		url('https://cdn.jsdelivr.net/gh/webfontworld/goodchoice/Jalnan.eot?#iefix')
-		format('embedded-opentype'),
-		url('https://cdn.jsdelivr.net/gh/webfontworld/goodchoice/Jalnan.woff2')
-		format('woff2'),
-		url('https://cdn.jsdelivr.net/gh/webfontworld/goodchoice/Jalnan.woff')
-		format('woff'),
-		url('https://cdn.jsdelivr.net/gh/webfontworld/goodchoice/Jalnan.ttf')
-		format("truetype");
-	font-display: swap;
-}
-
+<style type="text/css">
 body {
 	font-family: Arial, sans-serif;
 	background-color: #FFF5E1;
@@ -40,182 +21,9 @@ body {
 	margin: 0;
 	padding: 0;
 }
-
-header {
-	background-color: #ADD8E6;
-	color: #fff;
-}
-
-header h1 {
-	font-family: 'Jalnan', sans-serif;
-	font-size: 2em;
-	color: #FFD700;
-	text-shadow: -3px -3px 0 #fff, 3px -3px 0 #fff, -3px 3px 0 #fff, 3px 3px
-		0 #fff, -3px 0 0 #fff, 3px 0 0 #fff, 0 -3px 0 #fff, 0 3px 0 #fff;
-}
-
-nav a {
-	font-family: 'Jalnan', sans-serif;
-	color: #FFD700;
-	text-shadow: -1px -1px 0 #fff, 1px -1px 0 #fff, -1px 1px 0 #fff, 1px 1px
-		0 #fff, -1px 0 0 #fff, 1px 0 0 #fff, 0 -1px 0 #fff, 0 1px 0 #fff;
-}
-
-.banner-container {
-	display: flex;
-	overflow-x: scroll;
-}
-
-.banner {
-	flex: 0 0 auto;
-	width: 200px;
-	margin-right: 20px;
-	border: 1px solid #ccc;
-	padding: 10px;
-	text-align: center;
-}
-
-.banner img {
-	width: 100%;
-	height: auto;
-}
-
-.container {
-	display: flex;
-	flex-wrap: wrap;
-	  max-width: 100%;
-	padding-left: 0;
-	padding-right: 0;
-}
-
-.map-container {
-	flex: 0 0 75%;
-	position: relative;
-	padding-right: 1px;
-}
-
-.recommendation-container {
-	background-color: #e6e6fa;
-	display: flex;
-	justify-content: flex-end;
-}
-
-.banner-container {
-	flex: 0 0 25%;
-	display: flex;
-	flex-direction: column;
-	justify-content: space-between;
-}
-
-.banner {
-	background-color: #ccc;
-	text-align: center;
-	padding: 40px;
-	font-size: 1em;
-	flex: 1;
-	margin-bottom: 1px;
-}
-
-#map {
-	width: 100%;
-	height: 100%;
-	min-height: 600px; /* 높이 증가 */
-}
-
-/* 추가된 flip-horizontal-bottom 애니메이션 */
-@
--webkit-keyframes flip-horizontal-bottom { 0% {
-	-webkit-transform: rotateX(0);
-	transform: rotateX(0);
-}
-
-100
-%
-{
--webkit-transform
-:
-rotateX(
--360deg
-);
-transform
-:
-rotateX(
--360deg
-);
-}
-}
-@
-keyframes flip-horizontal-bottom { 0% {
-	-webkit-transform: rotateX(0);
-	transform: rotateX(0);
-}
-
-100
-%
-{
--webkit-transform
-:
-rotateX(
--360deg
-);
-transform
-:
-rotateX(
--360deg
-);
-}
-}
-.flip-horizontal-bottom {
-	-webkit-animation: flip-horizontal-bottom 0.2s linear 10 both;
-	animation: flip-horizontal-bottom 0.2s linear 10 both;
-	-webkit-transform-style: preserve-3d;
-	transform-style: preserve-3d;
-}
-
-.upperSearch-box {
-	display: flex;
-	align-items: center;
-	margin-left: 10px;
-}
-
-.upperSearch-txt {
-	width: 150px;
-}
-
-#search-btn {
-	margin-left: 10px;
-}
-
-.search-txt {
-	position: relative;
-	width: 600px;
-}
-
-input {
-	width: 100%;
-	border: 1px solid #bbb;
-	border-radius: 8px;
-	padding: 10px 12px;
-	font-size: 14px;
-}
-
-img {
-	width: 17px;
-	top: 10px;
-	right: 12px;
-	margin: 0;
-}
-
-.recommendation-button, .high-price-button, .low-price-button {
-	background-color: #ffa500; /* 연주황색 */
-	color: white;
-	border: none;
-	text-align: right;
-	text-decoration: none;
-	font-size: 16px;
-	margin-left: 10px;
-}
 </style>
+<script
+	src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
 </head>
 <body>
 	<header class="p-3 mb-3 border-bottom">
