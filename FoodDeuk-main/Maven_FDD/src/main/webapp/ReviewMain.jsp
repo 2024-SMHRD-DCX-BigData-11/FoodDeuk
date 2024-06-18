@@ -12,68 +12,7 @@
     <meta charset="utf-8" />
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
     <link href="https://fonts.googleapis.com/css2?family=Nanum+Gothic:wght@400;700&display=swap" rel="stylesheet">
-    <style>
-        body {
-            font-family: 'Nanum Gothic', sans-serif;
-            background-color: #f5f5f5;
-        }
-        #board {
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 30px;
-            background-color: #FFF5E1; /* 노란색 배경 */
-            border-radius: 8px;
-            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-        }
-        #list {
-            width: 100%;
-            border-collapse: collapse;
-            font-size: 16px;
-        }
-        #list th, #list td {
-            padding: 16px;
-            text-align: center;
-            border: 1px solid #ddd;
-        }
-        #list th {
-            background-color: #f2f2f2;
-            text-align: center;
-        }
-        #list .review-content {
-            display: -webkit-box;
-            -webkit-line-clamp: 2;
-            -webkit-box-orient: vertical;
-            overflow: hidden;u89u
-            text-overflow: ellipsis;
-        }
-        #list a {
-            color: #333;
-            text-decoration: none;
-        }
-        #list a:hover {
-            color: #000;
-        }
-        .buttons {
-            margin-top: 20px;
-            text-align: right;
-        }
-        .buttons button {
-            padding: 10px 16px;
-            background-color: #ff9800; /* 주황색 */
-            color: white;
-            border: none;
-            border-radius: 4px;
-            cursor: pointer;
-            font-size: 16px;
-        }
-        .buttons button:hover {
-            background-color: yellow;
-        }
-        #list td img {
-    max-width: 200px; /* 이미지 최대 너비 설정 */
-    height: auto; /* 이미지 높이는 자동으로 조정 */
-}
-    </style>
+	<link rel="stylesheet" href="assetsBoard/css/ReviewMain.css" />
 </head>
 <body>
     <div id="board">
@@ -84,9 +23,9 @@
         <table id="list">
             
             <%
+            int res_no = 12784252;
     ReviewDAO reviewDAO = new ReviewDAO();
-    List<Review> reviews = reviewDAO.getAllReviews();
-    //reviews 안에 리뷰들을 못 불러옴
+    List<Review> reviews = reviewDAO.detailReviews(res_no);
     for (Review review : reviews) {
 %>
            

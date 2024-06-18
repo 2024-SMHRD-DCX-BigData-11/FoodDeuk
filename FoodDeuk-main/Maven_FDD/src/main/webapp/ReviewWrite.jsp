@@ -6,54 +6,16 @@
 <head>
 <meta charset="UTF-8">
 <title>리뷰 작성</title>
-<style>
-    #board {
-        max-width: 800px;
-        margin: 50px auto;
-        padding: 20px;
-        border: 1px solid #ddd;
-        border-radius: 5px;
-        box-shadow: 0 2px 4px rgba(0,0,0,0.1);
-    }
-
-    #board h1 {
-        color: #333;
-        text-align: center;
-        margin-bottom: 30px;
-    }
-
-    #board table {
-        width: 100%;
-        border-collapse: collapse;
-    }
-
-    #board table td {
-        padding: 10px;
-        border-bottom: 1px solid #ddd;
-    }
-
-    #board table input[type="text"],
-    #board table textarea {
-        width: 100%;
-        padding: 10px;
-        border: 1px solid #ddd;
-        border-radius: 5px;
-    }
-
-    #board table input[type="reset"],
-    #board table input[type="submit"] {
-        padding: 10px 20px;
-        background-color: #0056b3;
-        color: white;
-        border: none;
-        border-radius: 5px;
-        cursor: pointer;
-    }
-
-    #board table input[type="reset"]:hover,
-    #board table input[type="submit"]:hover {
-        background-color: #004494;
-    }
+<link rel="stylesheet" href="assetsBoard/css/ReviewMain.css" />
+<link rel="stylesheet" href="assetsBoard/css/ReviewWrite.css" />
+<style type="text/css">
+body {
+	font-family: Arial, sans-serif;
+	background-color: #FFF5E1;
+	color: #333;
+	margin: 0;
+	padding: 0;
+}
 </style>
 </head>
 <body>
@@ -79,6 +41,7 @@
                 <tr>
                     <td>작성자</td>
                     <td><%=login_member.getUser_id() %></td>
+                    <input type="hidden" name="user_id" value="<%=login_member.getUser_no() %>">
                 </tr>
                 <tr>
                     <td colspan="2">내용</td>
@@ -97,6 +60,7 @@
                     <td colspan="2">
                         <input type="reset" value="초기화">
                         <input type="submit" value="작성하기">
+                        <button><a href="ReviewMain.jsp">뒤로가기</a></button>
                     </td>
                 </tr>
             </table>

@@ -20,7 +20,15 @@ public class Review {
 		this.ratings = ratings2;
 		
 	}
-
+	public Review(int res_no,int user_no,String review_content, String filename, String ratings2) {
+		super();
+		this.res_no= res_no;
+		this.user_no= user_no;
+		this.review_content = review_content;
+		this.filename = filename;
+		this.ratings = ratings2;
+		
+	}
 
 	private int review_no;
 	private int res_no;

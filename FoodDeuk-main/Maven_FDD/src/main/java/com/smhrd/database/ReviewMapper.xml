@@ -10,6 +10,6 @@
   		select * from t_review
   	</select>
      <select id="detailReview" resultType="Review">
-     	select * from t_review where num=#{num}
+     	select * from t_review where res_no=#{res_no}
      </select>
 </mapper>

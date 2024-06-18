@@ -33,12 +33,13 @@ public class ReviewCon extends HttpServlet {
 		MultipartRequest multi;
 		try {
 			multi = new MultipartRequest(request, path, maxSize, encoding, rename);
-
+			int res_no = Integer.parseInt(multi.getParameter("res_no"));
+			int user_no = Integer.parseInt(multi.getParameter("user_no"));
 			String content = multi.getParameter("review_content");
 			String filename = multi.getFilesystemName("filename");
 			String ratings = multi.getParameter("ratings");
 
-			Review review = new Review(content, filename, ratings);
+			Review review = new Review(res_no,user_no,content, filename, ratings);
 
 			System.out.println(review.toString());
 

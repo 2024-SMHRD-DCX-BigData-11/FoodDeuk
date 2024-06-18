@@ -28,7 +28,16 @@ public class ReviewDAO {
         return reviews;
     }
     
-    
+    public List<Review> detailReviews(int res_no) {
+        
+        SqlSession session = sqlSessionFactory.openSession(true);
+        try {
+        	reviews = session.selectList("com.smhrd.database.ReviewMapper.detailReview",res_no);
+        } finally {
+            session.close();
+        }
+        return reviews;
+    }
     
     public void updateReview(Review review) {
         for (int i = 0; i < reviews.size(); i++) {
@@ -39,14 +48,7 @@ public class ReviewDAO {
         }
     }
 
-    public void deleteReview(int id) {
-        for (int i = 0; i < reviews.size(); i++) {
-            if (reviews.get(i).getUser_no() == id) {
-                reviews.remove(i);
-                break;
-            }
-        }
-    }
+   
     private Connection conn;
     private PreparedStatement pstmt;
 
