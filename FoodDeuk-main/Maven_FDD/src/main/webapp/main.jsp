@@ -136,7 +136,7 @@ body {
 					bannerDiv.classList.add('banner');
 					let temp = '';
 
-					temp += `<div class='banner-container-side'><div style="width: 150px;"><img src="${value.res_image}" alt="Banner"></div>`;
+					temp += `<div class='banner-container-side'><div style="width: 100px;"><img src="${value.res_image}" alt="Banner"></div>`;
 					temp += `<div><h3>${value.res_name}</h3></div></div>`;
 					
 					const menus = Object.values(value.menus);

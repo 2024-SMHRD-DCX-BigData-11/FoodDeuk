@@ -37,9 +37,6 @@ body {
     	List<Review> reviews = reviewDAO.getAllReviews();
     	for (Review review : reviews) {
     		%>
-    		           
-    		               <!-- <td><%= review.getReview_no() %></td>
-    		                <td><%= review.getRes_no() %></td>-->
     		            <tr>
     		                <td><%= review.getUser_no() %></td>
     		                <td><%= review.getR_date() %></td>

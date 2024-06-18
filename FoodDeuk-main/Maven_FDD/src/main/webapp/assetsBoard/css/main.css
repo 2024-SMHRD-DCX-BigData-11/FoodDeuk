@@ -81,7 +81,6 @@ nav a {
     height: auto;
   }
 .banner-container {
-
     display: flex;
     overflow: hidden;
     overflow-y: auto; /* 세로 스크롤 가능하게 설정 */
@@ -90,6 +89,7 @@ nav a {
 }
 
 .banner {
+	border-radius: 5px;
     flex: 0 0 auto;
     width: 370px;  /* 가로 크기를 300px로 확장 */
     margin-right: 20px;
@@ -99,8 +99,9 @@ nav a {
 }
 
 .banner img {
-    width: 100%;
-    height: auto;
+	border-radius: 5px;
+    width: 100px;
+    height: 100px;
 }
 .menuContainer {
     max-height: 10px;  /* 기본적으로 100px까지만 표시 */
@@ -221,6 +222,7 @@ input {
    text-decoration: none;
    font-size: 16px;
    margin-left: 10px;
+   border-radius: 5px;
 }
 
 .banner-container-side{
@@ -233,6 +235,11 @@ font-family: 'NanumSquare';
 }
 .more-button, .review-button,.review-main-button{
 font-family: 'NanumSquare';
+border-radius: 5px;
+background-color: #ffa500; /* 연주황색 */
+color: white;
+ border: none;
+ margin-left:5px;
 }
 
 p {
