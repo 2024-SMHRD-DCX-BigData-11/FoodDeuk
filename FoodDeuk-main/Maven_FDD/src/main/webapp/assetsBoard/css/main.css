@@ -16,6 +16,12 @@
       format("truetype");
    font-display: swap;
 }
+@import url(https://cdn.jsdelivr.net/gh/moonspam/NanumSquare@2.0/nanumsquare.css);
+@font-face {
+    font-family: AppleSDGothicNeo;
+    font-weight: 700;
+    src: url(AppleSDGothicNeoB.woff2) format("woff2");
+}
 
 header {
   background-color: #FFA500; /* 밝은 주황색 */
@@ -184,6 +190,15 @@ input {
 display : flex;
 }
 .product-container {
-display: flex;
-    justify-content: space-evenly;
+font-family: 'NanumSquare';
+   display: flex;
+   justify-content: space-evenly;
+}
+.more-button, .review-button,.review-main-button{
+font-family: 'NanumSquare';
+}
+
+p {
+	margin-bottom: 2px !important;
+	font-size: 17px;
 }
