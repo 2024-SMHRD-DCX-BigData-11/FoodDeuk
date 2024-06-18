@@ -116,7 +116,19 @@ body {
 				data.slice(0, 10).forEach(value => {
 					var marker = new naver.maps.Marker({
 						position: new naver.maps.LatLng(value.lat, value.lng),
-						map: map
+						map: map,
+						icon: {
+							content:         '<div class="marker">'+
+					        '<div class="marker_icon_area">'+
+					        '<img src="assetBoard/image/restaurant.png" width="34" height="34" alt="음식점" class="icon">'+
+					        '</div>'+
+					        '<div class="marker_text_area">'+
+					        '<strong class="marker_title">'+
+					        '테스트'+
+					        '</strong>'+
+					        '</div>'+
+					        '</div>'
+						}
 					});
 					markers.push(marker);
 
