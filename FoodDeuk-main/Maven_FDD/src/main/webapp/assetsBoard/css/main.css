@@ -42,7 +42,43 @@ nav a {
    text-shadow: -1px -1px 0 #fff, 1px -1px 0 #fff, -1px 1px 0 #fff, 1px 1px
       0 #fff, -1px 0 0 #fff, 1px 0 0 #fff, 0 -1px 0 #fff, 0 1px 0 #fff;
 }
+.search-box {
+    display: flex;
+    align-items: center;
+    background-color: #FFA500; /* 밝은 주황색 */
+    padding: 10px;
+    border-radius: 5px;
+  }
 
+  .search-box select, .search-box input {
+    font-family: 'NanumSquare';
+    border: none;
+    padding: 10px;
+    margin-right: 10px;
+    border-radius: 5px;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+  }
+
+  .search-box select {
+    background-color: #FFD700; /* 황금색 */
+    color: #fff;
+  }
+
+  .search-box input {
+    background-color: #fff;
+    color: #FFA500; /* 밝은 주황색 */
+  }
+
+  .search-box button {
+    background: none;
+    border: none;
+    cursor: pointer;
+  }
+
+  .search-box button img {
+    width: 20px;
+    height: auto;
+  }
 .banner-container {
 
     display: flex;
