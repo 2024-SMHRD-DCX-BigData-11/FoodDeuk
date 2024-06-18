@@ -57,7 +57,7 @@ public class SearchCon extends HttpServlet {
 		search.setMenu_price(upperPrice);
 		search.setLat(latitude);
 		search.setLng(longitude);
-		
+
 		if (upperPrice != Integer.MAX_VALUE) {
 			MenuDAO dao = new MenuDAO();
 			searchResults = dao.listByHighPrice(search);
@@ -71,9 +71,19 @@ public class SearchCon extends HttpServlet {
 				searchResults = dao.searchByCategory(search);
 			}
 		}
-		
-		for (Restaurant restaurant : searchResults) {
-			restaurant.setMenus(MyAppListener.restaurants.get(restaurant.getRes_no()).getMenus());
+
+		if (searchType.equals("menu")) {
+			for (Restaurant restaurant : searchResults) {
+				for (Menu menu : MyAppListener.restaurants.get(restaurant.getRes_no()).getMenus().values()) {
+					if (menu.getMenu_name().contains(keyword)) {
+						restaurant.addMenu(menu);
+					}
+				}
+			}
+		} else {
+			for (Restaurant restaurant : searchResults) {
+				restaurant.setMenus(MyAppListener.restaurants.get(restaurant.getRes_no()).getMenus());
+			}
 		}
 
 		ObjectMapper mapper = new ObjectMapper();
