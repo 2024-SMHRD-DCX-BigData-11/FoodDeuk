@@ -53,7 +53,7 @@ public class SearchCon extends HttpServlet {
 		List<Restaurant> searchResults = null;
 
 		Search search = new Search();
-		search.setMenu_name(keyword);
+		search.setKeyword(keyword);
 		search.setMenu_price(upperPrice);
 		search.setLat(latitude);
 		search.setLng(longitude);

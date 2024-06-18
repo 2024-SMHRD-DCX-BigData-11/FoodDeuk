@@ -9,7 +9,7 @@
    <select id="upperPrice" parameterType="Search" resultType="Restaurant">
    <![CDATA[
     SELECT * FROM t_restaurant
-            WHERE res_no IN (SELECT DISTINCT(res_no) FROM t_menu WHERE menu_price <= #{menu_price} AND menu_name LIKE '%' || #{menu_name} || '%')
+            WHERE res_no IN (SELECT DISTINCT(res_no) FROM t_menu WHERE menu_price <= #{menu_price} AND menu_name LIKE '%' || #{keyword} || '%')
             AND lat BETWEEN #{lat} - 0.005 AND #{lat} + 0.005
             AND lng BETWEEN #{lng} - 0.01 AND #{lng} + 0.01
     ]]>

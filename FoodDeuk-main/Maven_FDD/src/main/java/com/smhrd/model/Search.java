@@ -10,7 +10,7 @@ import lombok.ToString;
 @Setter
 @ToString
 public class Search {
-    private String menu_name;
+    private String keyword;
     private int menu_price;
     private double lat;
     private double lng;
