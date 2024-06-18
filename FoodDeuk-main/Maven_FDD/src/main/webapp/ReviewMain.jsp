@@ -18,7 +18,7 @@ body {
   font-family: 'Nanum Gothic', sans-serif;
   margin: 0;
   padding: 0;
-  background-color: #f5f5f5;
+  background-color: #F5F5F5;
 }
 </style>
 </head>
