@@ -103,7 +103,8 @@ body {
 				})
 	            const bannerContainer = document.getElementById('banner-container');
 	            bannerContainer.innerHTML = ''; // 기존 배너 초기화
-				data.forEach(value => {
+	            
+				data.slice(0, 10).forEach(value => {
 					var marker = new naver.maps.Marker({
 					    position: new naver.maps.LatLng(value.lat, value.lng),
 					    map: map
@@ -113,12 +114,21 @@ body {
 		            const bannerDiv = document.createElement('div');
 		            bannerDiv.classList.add('banner');
 		            temp = '';
-		            temp += `<img src="${value.res_image}" alt="Banner">`;
-		            temp += `<h3>${value.res_name}</h3>`;
+		            
+		            temp += `<div class='banner-container-side'><div style ="width: 150px;"><img src="${value.res_image}" alt="Banner"></div>`;
+		            temp += `<div><h3>${value.res_name}</h3></div></div>`;
 		            Object.values(value.menus).forEach(value_ => {
-		                temp += `<p>${value_.menu_name}</p>`;
-		            	temp += `<p>${value_.menu_price}원</p>`;	  
+		                temp += `<div class="product-container"><div><p>${value_.menu_name}</p></div>`;
+		            	temp += `<div><p>${value_.menu_price}원</p></div></div>`;	  
 		            });
+		            
+
+	                const moreButton = document.createElement('button');
+	                moreButton.textContent = '메뉴 더보기';
+	                moreButton.addEventListener('click', () => {
+	                    menuContainer.classList.toggle('expanded');
+	                    moreButton.textContent = menuContainer.classList.contains('expanded') ? '메뉴 접기' : '메뉴 더보기';
+	                });
 			        bannerDiv.innerHTML = temp;
 		            bannerContainer.appendChild(bannerDiv);
 				})
@@ -127,31 +137,6 @@ body {
 				alert('error');
 			}
 		})
-		/* fetch('BannerCon')
-        .then(response => {
-            if (!response.ok) {
-                throw new Error('Network response was not ok');
-            }
-            return response.json();
-        })
-        .then(data => {
-            console.log('Banner data:', data); // 데이터 출력
-            const bannerContainer = document.getElementById('banner-container');
-            bannerContainer.innerHTML = ''; // 기존 배너 초기화
-            data.forEach(banner => {
-                const bannerDiv = document.createElement('div');
-                bannerDiv.classList.add('banner');
-                bannerDiv.innerHTML = `
-                    <img src="${banner.res_img}" alt="${banner.res_name}">
-                    <h3>${banner.res_name}</h3>
-                    <p>${banner.menu_name}</p>
-                    <p>${banner.price}원</p>
-                    <p>${banner.ratings}점</p>
-                `;
-                bannerContainer.appendChild(bannerDiv);
-            });
-        })
-        .catch(error => console.error('Error fetching banner data:', error)); */
 });
 	
 	var flip_menu = document.getElementById('flip_menu');

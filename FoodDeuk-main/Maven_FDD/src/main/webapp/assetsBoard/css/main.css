@@ -38,24 +38,35 @@ nav a {
 }
 
 .banner-container {
-	display: flex;
-	overflow-x: scroll;
+
+    display: flex;
+    overflow: hidden;
+    overflow-y: auto; /* 세로 스크롤 가능하게 설정 */
+	max-height: 625px; /* 배너 컨테이너의 최대 높이 설정 */
+	flex: 1;
 }
 
 .banner {
-	flex: 0 0 auto;
-	width: 200px;
-	margin-right: 20px;
-	border: 1px solid #ccc;
-	padding: 10px;
-	text-align: center;
+    flex: 0 0 auto;
+    width: 370px;  /* 가로 크기를 300px로 확장 */
+    margin-right: 20px;
+    border: 1px solid #ccc;
+    padding: 5px;
+    text-align: center;
 }
 
 .banner img {
-	width: 100%;
-	height: auto;
+    width: 100%;
+    height: auto;
 }
-
+.menuContainer {
+    max-height: 10px;  /* 기본적으로 100px까지만 표시 */
+    overflow: hidden;
+    transition: max-height 0.3s ease;
+}
+.menuContainer.expanded {
+    max-height: none;  /* 확장 시 모든 내용을 표시 */
+}
 .container {
 	display: flex;
 	flex-wrap: wrap;
@@ -65,7 +76,7 @@ nav a {
 }
 
 .map-container {
-	flex: 0 0 75%;
+	flex: 0 0 70%;
 	position: relative;
 	padding-right: 1px;
 }
@@ -77,16 +88,16 @@ nav a {
 }
 
 .banner-container {
-	flex: 0 0 25%;
-	display: flex;
+	flex: 0 0 30%;
+	display: contants;
 	flex-direction: column;
 	justify-content: space-between;
 }
 
 .banner {
-	background-color: #ccc;
+	background-color: #f8f9fa;
 	text-align: center;
-	padding: 40px;
+	/* padding: 40px; */
 	font-size: 1em;
 	flex: 1;
 	margin-bottom: 1px;
@@ -155,12 +166,7 @@ input {
 	font-size: 14px;
 }
 
-img {
-	width: 17px;
-	top: 10px;
-	right: 12px;
-	margin: 0;
-}
+
 
 .recommendation-button, .high-price-button, .low-price-button {
 	background-color: #ffa500; /* 연주황색 */
@@ -170,4 +176,12 @@ img {
 	text-decoration: none;
 	font-size: 16px;
 	margin-left: 10px;
+}
+
+.banner-container-side{
+display : flex;
+}
+.product-container {
+display: flex;
+    justify-content: space-evenly;
 }
