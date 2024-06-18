@@ -76,6 +76,9 @@ public class SearchCon extends HttpServlet {
 			for (Restaurant restaurant : searchResults) {
 				for (Menu menu : MyAppListener.restaurants.get(restaurant.getRes_no()).getMenus().values()) {
 					if (menu.getMenu_name().contains(keyword)) {
+						if (upperPrice < menu.getMenu_price()) {
+							continue;
+						}
 						restaurant.addMenu(menu);
 					}
 				}

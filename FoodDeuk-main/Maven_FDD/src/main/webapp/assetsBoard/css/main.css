@@ -212,8 +212,11 @@ input {
 
 .nav .d-flex.align-items-center {
   margin-left: auto;
+  
 }
-
+ .hidden {
+    display: none;
+  }
 .recommendation-button, .high-price-button, .low-price-button {
    background-color: #ffa500; /* 연주황색 */
    color: white;
@@ -224,7 +227,9 @@ input {
    margin-left: 10px;
    border-radius: 5px;
 }
-
+.nav.d-flex.align-items-center{
+	--bs-nav-link-color: #E6C200 !important;
+}
 .banner-container-side{
 display : flex;
 }
@@ -246,3 +251,34 @@ p {
 	margin-bottom: 2px !important;
 	font-size: 17px;
 }
+
+/* 마커 시작 */
+.marker_icon_area {
+  position: absolute;
+  transform: translate(-50%, -50%);
+}
+
+.marker_text_area {
+  flex-direction: column;
+  -webkit-box-align: center;
+  align-items: center;
+  transform: translateX(-50%);
+  position: absolute;
+  top: 14px;
+  font-size: 12px;
+  font-weight: 500;
+  line-height: 15px;
+  text-shadow: rgb(255, 255, 255) -1px 0px, rgb(255, 255, 255) 0px 1px, rgb(255, 255, 255) 1px 0px, rgb(255, 255, 255) 0px -1px;
+  text-align: center;
+  letter-spacing: -0.1px;
+  display: flex;
+}
+
+.marker_title {
+  max-width: 120px;
+  min-width: 70px;
+  overflow-wrap: break-word;
+  word-break: keep-all;
+  color: black;
+}
+/* 마커 끝 */

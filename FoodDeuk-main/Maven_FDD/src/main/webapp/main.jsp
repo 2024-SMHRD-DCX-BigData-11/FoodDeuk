@@ -77,6 +77,23 @@ body {
 	<script
 		src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
 	<script type="text/javascript">
+	  // 기존 스크립트 코드 위에 추가합니다.
+	  const searchTypeSelect = document.getElementById('search-type');
+	  const upperSearchTxt = document.getElementById('upperSearch-txt');
+
+	  // 페이지가 로드될 때 초기 상태 설정
+	  if (searchTypeSelect.value !== 'menu') {
+	    upperSearchTxt.classList.add('hidden');
+	  }
+
+	  // search-type 선택 요소에 change 이벤트 리스너 등록
+	  searchTypeSelect.addEventListener('change', (event) => {
+	    if (event.target.value === 'menu') {
+	      upperSearchTxt.classList.remove('hidden');
+	    } else {
+	      upperSearchTxt.classList.add('hidden');
+	    }
+	  });
 	var latitude = -1, longitude = -1;
 	navigator.geolocation.getCurrentPosition((position) => {
 		console.log(position);
