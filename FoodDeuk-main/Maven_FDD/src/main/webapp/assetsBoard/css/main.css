@@ -166,7 +166,9 @@ input {
    font-size: 14px;
 }
 
-
+.nav .d-flex.align-items-center {
+  margin-left: auto;
+}
 
 .recommendation-button, .high-price-button, .low-price-button {
    background-color: #ffa500; /* 연주황색 */

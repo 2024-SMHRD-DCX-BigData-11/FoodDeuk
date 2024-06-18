@@ -43,22 +43,23 @@ body {
 			<%
 			Member login_member = (Member) session.getAttribute("login_member");
 			%>
-			<nav class="nav">
-				<a class="nav-link" href="ReviewMain.jsp">게시판</a>
-				<%
-				if (login_member == null) {
-				%>
-				<a class="nav-link" href="Login.jsp">로그인</a> <a class="nav-link"
-					href="Join.jsp">회원가입</a>
-				<%
-				} else {
-				%>
-				<a class="nav-link" href="UpdateMember.jsp">개인정보수정</a> <a
-					class="nav-link" href="LogoutCon">로그아웃</a>
-				<%
-				}
-				%>
-			</nav>
+			<nav class="nav d-flex align-items-center">
+ 			 <a class="nav-link" href="ReviewMain.jsp">게시판</a>
+  			<%
+  				if (login_member == null) {
+  				%>
+  				<div class="d-flex align-items-center">
+   				 <a class="nav-link" href="Login.jsp">로그인</a>
+    			<a class="nav-link" href="Join.jsp">회원가입</a>
+  				</div>
+  				<%} else {%>
+  				<div class="d-flex align-items-center">
+    			<a class="nav-link" href="LogoutCon">로그아웃</a>
+  				</div>
+ 				 <%}%>
+					</nav>
+
+
 		</div>
 	</header>
 	<div class="container">
