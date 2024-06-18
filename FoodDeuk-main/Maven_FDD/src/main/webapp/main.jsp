@@ -15,11 +15,10 @@
 	rel="stylesheet">
 <style type="text/css">
 body {
-	font-family: Arial, sans-serif;
-	background-color: #FFF5E1;
-	color: #333;
-	margin: 0;
-	padding: 0;
+  font-family: 'Nanum Gothic', sans-serif;
+  margin: 0;
+  padding: 0;
+  background-color: #f5f5f5;
 }
 </style>
 <script
@@ -37,9 +36,9 @@ body {
 				</select> <input id="search-txt" class="search-txt" type="text" name="query"
 					placeholder="검색어를 입력하세요"> <input id="upperSearch-txt"
 					class="upperSearch-txt" type="text" name="query"
-					placeholder="상한가 지정"> <img
-					src="https://s3.ap-northeast-2.amazonaws.com/cdn.wecode.co.kr/icon/search.png">
-				<button id="search-btn" type="button">검색</button>
+					placeholder="상한가 지정">
+				<button id="search-btn" type="button"><img
+					src="https://s3.ap-northeast-2.amazonaws.com/cdn.wecode.co.kr/icon/search.png" width = 20px height=auto></button>
 			</form>
 			<%
 			Member login_member = (Member) session.getAttribute("login_member");

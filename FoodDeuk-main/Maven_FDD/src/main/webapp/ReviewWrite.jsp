@@ -25,7 +25,7 @@ body {
 %>
     <script>
         alert("로그인이 필요한 기능입니다.");
-        window.location.href = "ReviewMain.jsp"; // 로그인 페이지로 이동
+        window.location.href = "Login.jsp"; // 로그인 페이지로 이동
     </script>
 <%
     } else {

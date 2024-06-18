@@ -13,6 +13,14 @@
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
     <link href="https://fonts.googleapis.com/css2?family=Nanum+Gothic:wght@400;700&display=swap" rel="stylesheet">
 	<link rel="stylesheet" href="assetsBoard/css/ReviewMain.css" />
+<style>
+body {
+  font-family: 'Nanum Gothic', sans-serif;
+  margin: 0;
+  padding: 0;
+  background-color: #f5f5f5;
+}
+</style>
 </head>
 <body>
     <div id="board">
