@@ -11,9 +11,9 @@ import lombok.ToString;
 @ToString
 public class Search {
     private String menu_name;
-    private int res_no;
-    private String res_name;
-    private String address;
+    private int menu_price;
+    private double lat;
+    private double lng;
 
     // 기본 생성자
     public Search() {}

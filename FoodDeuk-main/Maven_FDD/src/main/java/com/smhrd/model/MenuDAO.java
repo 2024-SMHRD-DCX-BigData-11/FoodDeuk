@@ -17,9 +17,9 @@ public class MenuDAO {
 		return results;
 	}
 
-	public List<Restaurant> listByHighPrice(Menu menu) {
+	public List<Restaurant> listByHighPrice(Search search) {
 		SqlSession session = sqlSessionFactory.openSession(true);
-		List<Restaurant> results = session.selectList("com.smhrd.database.MenuMapper.upperPrice", menu);
+		List<Restaurant> results = session.selectList("com.smhrd.database.MenuMapper.upperPrice", search);
 		session.close();
 		return results;
 	}

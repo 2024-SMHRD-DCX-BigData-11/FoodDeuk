@@ -17,6 +17,7 @@
 			alias="Restaurant" />
 		<typeAlias type="com.smhrd.model.Menu" alias="Menu" />
 		<typeAlias type="com.smhrd.model.Category" alias="Category" />
+        <typeAlias type="com.smhrd.model.Search" alias="Search" />
 	</typeAliases>
 	<environments default="development">
 		<environment id="development">

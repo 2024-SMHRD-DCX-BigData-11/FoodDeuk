@@ -77,10 +77,13 @@ body {
 	<script
 		src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
 	<script type="text/javascript">
+	var latitude = -1, longitude = -1;
 	navigator.geolocation.getCurrentPosition((position) => {
 		console.log(position);
 		console.log(position.coords.latitude);
 		console.log(position.coords.longitude);
+		latitude = position.coords.latitude;
+		longitude = position.coords.longitude;
 	});
     var mapOptions = {
       center: new naver.maps.LatLng(34.9683954, 127.4841841),
@@ -94,7 +97,7 @@ body {
     	$.ajax({
 			// 요청경로
 			url : 'SearchCon',
-			data : {search: $('#search-txt').val(), upperSearch: $('#upperSearch-txt').val(), searchType: $('#search-type').val()},
+			data : {search: $('#search-txt').val(), upperSearch: $('#upperSearch-txt').val(), searchType: $('#search-type').val(), lat: latitude, lng: longitude},
 			type : 'GET',
 			success : function(data) {
 				console.log(data);
