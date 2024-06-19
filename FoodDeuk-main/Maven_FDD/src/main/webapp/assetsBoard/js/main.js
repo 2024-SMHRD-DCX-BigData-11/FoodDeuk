@@ -49,14 +49,16 @@ $('#check-button').click(() => {
 	    	clickListeners.push(clickListener);
 	    });
     } else {
-    	wishlist.clear();
-		bannerContainer.innerHTML = ''; // 기존 배너 초기화
-	    clickListeners.forEach(clickListener => {
-	    	naver.maps.Event.removeListener(clickListener);
-	    });
-    	res_data.slice(0, 15).forEach(value => {
-    		test(value);
-		})
+	    if (res_data != null) {
+	    	wishlist.clear();
+			bannerContainer.innerHTML = ''; // 기존 배너 초기화
+		    clickListeners.forEach(clickListener => {
+		    	naver.maps.Event.removeListener(clickListener);
+		    });
+	    	res_data.slice(0, 15).forEach(value => {
+	    		test(value);
+			});
+		}
     }
 });
 

@@ -217,7 +217,7 @@ input {
  .hidden {
     display: none;
   }
-.recommendation-button, .high-price-button, .low-price-button {
+.recommendation-button, .high-price-button, .low-price-button, .checkList-button {
    background-color: #ffa500; /* 연주황색 */
    color: white;
    border: none;
