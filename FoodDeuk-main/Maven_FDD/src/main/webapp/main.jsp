@@ -67,6 +67,7 @@ body {
 			<div class="recommendation-container">
 				<div id="flip_menu"></div>
 				<button id="recommendation-button" class="recommendation-button">음식추천</button>
+				<button id="check-button" class="checkList-button">체크리스트</button>
 			</div>
 			<div id="map"></div>
 		</div>

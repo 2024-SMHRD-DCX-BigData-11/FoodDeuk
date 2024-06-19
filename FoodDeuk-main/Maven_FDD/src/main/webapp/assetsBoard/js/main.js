@@ -14,6 +14,52 @@ searchTypeSelect.addEventListener('change', (event) => {
 		upperSearchTxt.classList.add('hidden');
 	}
 });
+
+var wishlist = new Set(); // 클릭된 마커를 저장할 Set 생성
+
+let isWishlist = false;
+let res_data = null;
+const bannerContainer = document.getElementById('banner-container');
+
+var clickListeners = [];
+
+// 체크리스트 버튼 클릭 이벤트
+$('#check-button').click(() => {
+	isWishlist = !isWishlist;
+	markers.forEach(marker => {
+		marker.isCheck = false;
+		marker.setIcon({
+	    	content: '<div class="marker">' +
+			'<div class="marker_icon_area' +
+			(isWishlist ? ' test">' : '">') +
+			'<img src="assetsBoard/image/restaurant.png" width="34" height="34" alt="음식점" class="icon">' +
+			'</div>' +
+			'<div class="marker_text_area">' +
+			'<strong class="marker_title">' +
+			marker.res_name +
+			'</strong>' +
+			'</div>' +
+			'</div>'
+	    });
+	});
+	if (isWishlist) {
+		bannerContainer.innerHTML = ''; // 기존 배너 초기화
+	    markers.forEach(marker => {
+	    	clickListener = naver.maps.Event.addListener(marker, 'click', clickEvent);
+	    	clickListeners.push(clickListener);
+	    });
+    } else {
+    	wishlist.clear();
+		bannerContainer.innerHTML = ''; // 기존 배너 초기화
+	    clickListeners.forEach(clickListener => {
+	    	naver.maps.Event.removeListener(clickListener);
+	    });
+    	res_data.slice(0, 15).forEach(value => {
+    		test(value);
+		})
+    }
+});
+
 var latitude = -1, longitude = -1;
 navigator.geolocation.getCurrentPosition((position) => {
 	console.log(position);
@@ -43,11 +89,11 @@ $('#search-btn').click(() => {
 		},
 		type: 'GET',
 		success: function (data) {
+			res_data = data;
 			console.log(data);
 			markers.forEach(marker => {
 				marker.setMap(null);
 			})
-			const bannerContainer = document.getElementById('banner-container');
 			bannerContainer.innerHTML = ''; // 기존 배너 초기화
 
 			data.slice(0, 15).forEach(value => {
@@ -67,72 +113,12 @@ $('#search-btn').click(() => {
 							'</div>'
 					}
 				});
+				marker.data = value;
+				marker.res_name = value.res_name;
+	        	marker.isCheck = false;
 				markers.push(marker);
 
-				const bannerDiv = document.createElement('div');
-				bannerDiv.classList.add('banner');
-				let temp = '';
-
-				temp += `<div class='banner-container-side'>`;
-				temp += `<div style="width: 100px;">`
-				console.log(value.res_image != null);
-				if (value.res_image != null) {
-					temp += `<img src="${value.res_image}" alt="Banner">`
-				}
-				temp += `</div>`;
-				temp += `<div><h3>${value.res_name}</h3></div></div>`;
-
-				const menus = Object.values(value.menus);
-
-				menus.slice(0, 3).forEach(value_ => {
-					temp += `<div class="product-container"><div><p>${value_.menu_name}</p></div>`;
-					temp += `<div><p>${value_.menu_price}원</p></div></div>`;
-				});
-
-				bannerDiv.innerHTML = temp;
-
-				// 메뉴 더보기 버튼 추가
-				const moreButton = document.createElement('button');
-				moreButton.textContent = '더보기';
-				moreButton.classList.add('more-button');
-				moreButton.addEventListener('click', () => {
-					if (bannerDiv.classList.contains('expanded')) {
-						bannerDiv.classList.remove('expanded');
-						moreButton.textContent = '더보기';
-						bannerDiv.querySelectorAll('.product-container').forEach((el, index) => {
-							if (index >= 3) el.remove();
-						});
-					} else {
-						bannerDiv.classList.add('expanded');
-						moreButton.textContent = '접기';
-						menus.slice(3).forEach(value_ => {
-							const productContainer = document.createElement('div');
-							productContainer.classList.add('product-container');
-							productContainer.innerHTML = `<div><p>${value_.menu_name}</p></div><div><p>${value_.menu_price}원</p></div>`;
-							bannerDiv.insertBefore(productContainer, moreButton);
-						});
-					}
-				});
-				bannerDiv.appendChild(moreButton);
-
-				// 리뷰 작성 버튼 추가
-				const reviewButton = document.createElement('button');
-				reviewButton.textContent = '리뷰작성';
-				reviewButton.classList.add('review-button');
-				reviewButton.addEventListener('click', () => {
-					window.location.href = `ReviewWrite.jsp?res_no=${value.res_no}&res_name=${value.res_name}`;
-				});
-				bannerDiv.appendChild(reviewButton);
-				// 리뷰 보기 버튼 추가
-				const reviewMainButton = document.createElement('button');
-				reviewMainButton.textContent = '리뷰보기';
-				reviewMainButton.classList.add('review-main-button');
-				reviewMainButton.addEventListener('click', () => {
-					window.location.href = `ReviewMain.jsp?res_no=${value.res_no}`;
-				});
-				bannerDiv.appendChild(reviewMainButton);
-
-				bannerContainer.appendChild(bannerDiv);
+				test(value);
 			})
 		},
 		error: function () {
@@ -184,3 +170,94 @@ searchInput.addEventListener('keyup', (event) => {
 		searchBtn.click();
 	}
 });
+function clickEvent(e) {
+	var marker = e.overlay;
+	    		if (wishlist.has(marker)) {
+	    			wishlist.delete(marker);
+	    		} else {
+	    			wishlist.add(marker);
+	    		}
+				bannerContainer.innerHTML = ''; // 기존 배너 초기화
+				wishlist.forEach(marker_ => {
+					test(marker_.data);
+				});
+	    		marker.isCheck = !marker.isCheck;
+			    marker.setIcon({
+	            content: '<div class="marker">' +
+					'<div class="marker_icon_area' +
+					(!marker.isCheck ? ' test">' : '">') +
+					'<img src="assetsBoard/image/restaurant.png" width="34" height="34" alt="음식점" class="icon">' +
+					'</div>' +
+					'<div class="marker_text_area">' +
+					'<strong class="marker_title">' +
+					marker.res_name +
+					'</strong>' +
+					'</div>' +
+					'</div>'
+	        	});
+}
+function test(value) {
+	const bannerDiv = document.createElement('div');
+	bannerDiv.classList.add('banner');
+	let temp = '';
+
+	temp += `<div class='banner-container-side'>`;
+	temp += `<div style="width: 100px;">`
+	if (value.res_image != null) {
+		temp += `<img src="${value.res_image}" alt="Banner">`
+	}
+	temp += `</div>`;
+	temp += `<div><h3>${value.res_name}</h3></div></div>`;
+
+	const menus = Object.values(value.menus);
+
+	menus.slice(0, 3).forEach(value_ => {
+		temp += `<div class="product-container"><div><p>${value_.menu_name}</p></div>`;
+		temp += `<div><p>${value_.menu_price}원</p></div></div>`;
+	});
+
+	bannerDiv.innerHTML = temp;
+
+				// 메뉴 더보기 버튼 추가
+	const moreButton = document.createElement('button');
+	moreButton.textContent = '더보기';
+	moreButton.classList.add('more-button');
+	moreButton.addEventListener('click', () => {
+		if (bannerDiv.classList.contains('expanded')) {
+			bannerDiv.classList.remove('expanded');
+			moreButton.textContent = '더보기';
+			bannerDiv.querySelectorAll('.product-container').forEach((el, index) => {
+				if (index >= 3) el.remove();
+			});
+		} else {
+			bannerDiv.classList.add('expanded');
+			moreButton.textContent = '접기';
+			menus.slice(3).forEach(value_ => {
+				const productContainer = document.createElement('div');
+				productContainer.classList.add('product-container');
+				productContainer.innerHTML = `<div><p>${value_.menu_name}</p></div><div><p>${value_.menu_price}원</p></div>`;
+				bannerDiv.insertBefore(productContainer, moreButton);
+			});
+		}
+	});
+	bannerDiv.appendChild(moreButton);
+
+	// 리뷰 작성 버튼 추가
+	const reviewButton = document.createElement('button');
+	reviewButton.textContent = '리뷰작성';
+	reviewButton.classList.add('review-button');
+	reviewButton.addEventListener('click', () => {
+		window.location.href = `ReviewWrite.jsp?res_no=${value.res_no}&res_name=${value.res_name}`;
+	});
+	bannerDiv.appendChild(reviewButton);
+	// 리뷰 보기 버튼 추가
+	const reviewMainButton = document.createElement('button');
+	reviewMainButton.textContent = '리뷰보기';
+	reviewMainButton.classList.add('review-main-button');
+	reviewMainButton.addEventListener('click', () => {
+		window.location.href = `ReviewMain.jsp?res_no=${value.res_no}`;
+	});
+	bannerDiv.appendChild(reviewMainButton);
+
+	bannerContainer.appendChild(bannerDiv);
+}

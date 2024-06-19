@@ -281,4 +281,8 @@ p {
   word-break: keep-all;
   color: black;
 }
+
+.test {
+	opacity: 50%;
+}
 /* 마커 끝 */
