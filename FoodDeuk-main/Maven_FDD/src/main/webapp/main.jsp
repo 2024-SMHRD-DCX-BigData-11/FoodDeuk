@@ -67,7 +67,6 @@ body {
 			<div class="recommendation-container">
 				<div id="flip_menu"></div>
 				<button id="recommendation-button" class="recommendation-button">음식추천</button>
-				<button class="low-price-button">최저가</button>
 			</div>
 			<div id="map"></div>
 		</div>
