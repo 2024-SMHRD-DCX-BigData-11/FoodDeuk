@@ -27,7 +27,9 @@ body {
         <h1 style="font-size: 24px; margin-bottom: 20px;">리뷰 게시판</h1>
          <%
         Member login_member = (Member)session.getAttribute("login_member");
-      %>
+      %><div class="buttons">
+            <a href="main.jsp"><button id="writer">홈으로가기</button></a>
+        </div>
         <table id="list">
             
             <%
@@ -68,9 +70,6 @@ body {
     		            </tr>
     		        
     		        <%}%></table> <% }%>
-        <div class="buttons">
-            <a href="main.jsp"><button id="writer">홈으로가기</button></a>
-        </div>
     </div>
     <script src="assets/js/jquery.min.js"></script>
     <script src="assets/js/jquery.scrolly.min.js"></script>
