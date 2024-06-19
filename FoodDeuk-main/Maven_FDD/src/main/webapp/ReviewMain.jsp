@@ -40,6 +40,8 @@ body {
     if(res_no==null){
     	List<Review> reviews = reviewDAO.getAllReviews();
     	for (Review review : reviews) {
+    		int user_no = review.getUser_no(); // 사용자 번호 가져오기
+    	    String user_id = memberDAO.loginName(user_no); // 사용자 ID 가져오기
     		%>
     		            <tr>
     		                <td><%= review.getUser_no() %></td>
