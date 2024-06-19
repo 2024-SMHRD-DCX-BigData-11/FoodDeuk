@@ -2,7 +2,7 @@
 <%@page import="com.smhrd.model.Review"%>
 <%@page import="com.smhrd.model.ReviewDAO"%>
 <%@page import="com.smhrd.model.Member"%>
-<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" isELIgnored="false"%>
 <%@ page import="java.util.List, com.smhrd.model.Review" %>
 <%@ page import="com.smhrd.model.ReviewDAO" %>
 <%@ page import="com.smhrd.model.memberDAO" %>
@@ -32,7 +32,7 @@ body {
          <div class="buttons">
             <a href="main.jsp"><button id="writer">홈으로가기</button></a>
         </div>
-        <table id="list">
+        <table id="list" enctype="multipart/form-data" method="post">
             
             <% 
             String res_no = request.getParameter("res_no");
@@ -44,9 +44,9 @@ body {
     	    String user_id = memberDAO.loginName(user_no); // 사용자 ID 가져오기
     		%>
     		            <tr>
-    		                <td><%= review.getUser_no() %></td>
+    		            <td><%=request.getParameter("res_name")%></td>
     		                <td><%= review.getR_date() %></td>
-    		                <td></td>
+    		             <td><%= user_id %></td>
     		             </tr>
     		             <tr>
     		             <%if(review.getFilename()==null) {%>
@@ -67,9 +67,9 @@ body {
     		%>
     		       
     		            <tr>
-    		                <td><%= user_id %></td>
+    		                <td><%=request.getParameter("res_name")%></td>
     		                <td><%= review.getR_date() %></td>
-    		                <td></td>
+    		             <td><%= user_id  %></td>
     		             </tr>
     		             <tr>
     		                <td><img src="./images/<%= review.getFilename() %>"></td>

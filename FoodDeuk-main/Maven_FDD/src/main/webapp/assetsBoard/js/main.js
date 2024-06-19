@@ -257,7 +257,7 @@ function test(value) {
 	reviewMainButton.textContent = '리뷰보기';
 	reviewMainButton.classList.add('review-main-button');
 	reviewMainButton.addEventListener('click', () => {
-		window.location.href = `ReviewMain.jsp?res_no=${value.res_no}`;
+		window.location.href = `ReviewMain.jsp?res_no=${value.res_no}&res_name=${value.res_name}`;
 	});
 	bannerDiv.appendChild(reviewMainButton);
 
