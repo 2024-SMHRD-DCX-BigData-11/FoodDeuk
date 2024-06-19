@@ -1,352 +1,186 @@
-/*
-	Forty by HTML5 UP
-	html5up.net | @ajlkn
-	Free for personal and commercial use under the CCA 3.0 license (html5up.net/license)
-*/
+const searchTypeSelect = document.getElementById('search-type');
+const upperSearchTxt = document.getElementById('upperSearch-txt');
 
-(function($) {
+// 페이지가 로드될 때 초기 상태 설정
+if (searchTypeSelect.value !== 'menu') {
+	upperSearchTxt.classList.add('hidden');
+}
 
-	skel.breakpoints({
-		xlarge: '(max-width: 1680px)',
-		large: '(max-width: 1280px)',
-		medium: '(max-width: 980px)',
-		small: '(max-width: 736px)',
-		xsmall: '(max-width: 480px)',
-		xxsmall: '(max-width: 360px)'
-	});
+// search-type 선택 요소에 change 이벤트 리스너 등록
+searchTypeSelect.addEventListener('change', (event) => {
+	if (event.target.value === 'menu') {
+		upperSearchTxt.classList.remove('hidden');
+	} else {
+		upperSearchTxt.classList.add('hidden');
+	}
+});
+var latitude = -1, longitude = -1;
+navigator.geolocation.getCurrentPosition((position) => {
+	console.log(position);
+	console.log(position.coords.latitude);
+	console.log(position.coords.longitude);
+	latitude = position.coords.latitude;
+	longitude = position.coords.longitude;
+});
+var mapOptions = {
+	center: new naver.maps.LatLng(34.9683954, 127.4841841),
+	zoom: 17
+};
+var map = new naver.maps.Map('map', mapOptions);
 
-	/**
-	 * Applies parallax scrolling to an element's background image.
-	 * @return {jQuery} jQuery object.
-	 */
-	$.fn._parallax = (skel.vars.browser == 'ie' || skel.vars.browser == 'edge' || skel.vars.mobile) ? function() { return $(this) } : function(intensity) {
+var markers = []
 
-		var	$window = $(window),
-			$this = $(this);
+$('#search-btn').click(() => {
+	$.ajax({
+		// 요청경로
+		url: 'SearchCon',
+		data: {
+			search: $('#search-txt').val(),
+			upperSearch: $('#upperSearch-txt').val(),
+			searchType: $('#search-type').val(),
+			lat: latitude,
+			lng: longitude
+		},
+		type: 'GET',
+		success: function (data) {
+			console.log(data);
+			markers.forEach(marker => {
+				marker.setMap(null);
+			})
+			const bannerContainer = document.getElementById('banner-container');
+			bannerContainer.innerHTML = ''; // 기존 배너 초기화
 
-		if (this.length == 0 || intensity === 0)
-			return $this;
+			data.slice(0, 15).forEach(value => {
+				var marker = new naver.maps.Marker({
+					position: new naver.maps.LatLng(value.lat, value.lng),
+					map: map,
+					icon: {
+						content: '<div class="marker">' +
+							'<div class="marker_icon_area">' +
+							'<img src="assetsBoard/image/restaurant.png" width="34" height="34" alt="음식점" class="icon">' +
+							'</div>' +
+							'<div class="marker_text_area">' +
+							'<strong class="marker_title">' +
+							value.res_name +
+							'</strong>' +
+							'</div>' +
+							'</div>'
+					}
+				});
+				markers.push(marker);
 
-		if (this.length > 1) {
+				const bannerDiv = document.createElement('div');
+				bannerDiv.classList.add('banner');
+				let temp = '';
 
-			for (var i=0; i < this.length; i++)
-				$(this[i])._parallax(intensity);
-
-			return $this;
-
-		}
-
-		if (!intensity)
-			intensity = 0.25;
-
-		$this.each(function() {
-
-			var $t = $(this),
-				on, off;
-
-			on = function() {
-
-				$t.css('background-position', 'center 100%, center 100%, center 0px');
-
-				$window
-					.on('scroll._parallax', function() {
-
-						var pos = parseInt($window.scrollTop()) - parseInt($t.position().top);
-
-						$t.css('background-position', 'center ' + (pos * (-1 * intensity)) + 'px');
-
-					});
-
-			};
-
-			off = function() {
-
-				$t
-					.css('background-position', '');
-
-				$window
-					.off('scroll._parallax');
-
-			};
-
-			skel.on('change', function() {
-
-				if (skel.breakpoint('medium').active)
-					(off)();
-				else
-					(on)();
-
-			});
-
-		});
-
-		$window
-			.off('load._parallax resize._parallax')
-			.on('load._parallax resize._parallax', function() {
-				$window.trigger('scroll');
-			});
-
-		return $(this);
-
-	};
-
-	$(function() {
-
-		var	$window = $(window),
-			$body = $('body'),
-			$wrapper = $('#wrapper'),
-			$header = $('#header'),
-			$banner = $('#banner');
-
-		// Disable animations/transitions until the page has loaded.
-			$body.addClass('is-loading');
-
-			$window.on('load pageshow', function() {
-				window.setTimeout(function() {
-					$body.removeClass('is-loading');
-				}, 100);
-			});
-
-		// Clear transitioning state on unload/hide.
-			$window.on('unload pagehide', function() {
-				window.setTimeout(function() {
-					$('.is-transitioning').removeClass('is-transitioning');
-				}, 250);
-			});
-
-		// Fix: Enable IE-only tweaks.
-			if (skel.vars.browser == 'ie' || skel.vars.browser == 'edge')
-				$body.addClass('is-ie');
-
-		// Fix: Placeholder polyfill.
-			$('form').placeholder();
-
-		// Prioritize "important" elements on medium.
-			skel.on('+medium -medium', function() {
-				$.prioritize(
-					'.important\\28 medium\\29',
-					skel.breakpoint('medium').active
-				);
-			});
-
-		// Scrolly.
-			$('.scrolly').scrolly({
-				offset: function() {
-					return $header.height() - 2;
+				temp += `<div class='banner-container-side'>`;
+				temp += `<div style="width: 100px;">`
+				console.log(value.res_image != null);
+				if (value.res_image != null) {
+					temp += `<img src="${value.res_image}" alt="Banner">`
 				}
-			});
+				temp += `</div>`;
+				temp += `<div><h3>${value.res_name}</h3></div></div>`;
 
-		// Tiles.
-			var $tiles = $('.tiles > article');
+				const menus = Object.values(value.menus);
 
-			$tiles.each(function() {
+				menus.slice(0, 3).forEach(value_ => {
+					temp += `<div class="product-container"><div><p>${value_.menu_name}</p></div>`;
+					temp += `<div><p>${value_.menu_price}원</p></div></div>`;
+				});
 
-				var $this = $(this),
-					$image = $this.find('.image'), $img = $image.find('img'),
-					$link = $this.find('.link'),
-					x;
+				bannerDiv.innerHTML = temp;
 
-				// Image.
-
-					// Set image.
-						$this.css('background-image', 'url(' + $img.attr('src') + ')');
-
-					// Set position.
-						if (x = $img.data('position'))
-							$image.css('background-position', x);
-
-					// Hide original.
-						$image.hide();
-
-				// Link.
-					if ($link.length > 0) {
-
-						$x = $link.clone()
-							.text('')
-							.addClass('primary')
-							.appendTo($this);
-
-						$link = $link.add($x);
-
-						$link.on('click', function(event) {
-
-							var href = $link.attr('href');
-
-							// Prevent default.
-								event.stopPropagation();
-								event.preventDefault();
-
-							// Start transitioning.
-								$this.addClass('is-transitioning');
-								$wrapper.addClass('is-transitioning');
-
-							// Redirect.
-								window.setTimeout(function() {
-
-									if ($link.attr('target') == '_blank')
-										window.open(href);
-									else
-										location.href = href;
-
-								}, 500);
-
+				// 메뉴 더보기 버튼 추가
+				const moreButton = document.createElement('button');
+				moreButton.textContent = '더보기';
+				moreButton.classList.add('more-button');
+				moreButton.addEventListener('click', () => {
+					if (bannerDiv.classList.contains('expanded')) {
+						bannerDiv.classList.remove('expanded');
+						moreButton.textContent = '더보기';
+						bannerDiv.querySelectorAll('.product-container').forEach((el, index) => {
+							if (index >= 3) el.remove();
 						});
-
+					} else {
+						bannerDiv.classList.add('expanded');
+						moreButton.textContent = '접기';
+						menus.slice(3).forEach(value_ => {
+							const productContainer = document.createElement('div');
+							productContainer.classList.add('product-container');
+							productContainer.innerHTML = `<div><p>${value_.menu_name}</p></div><div><p>${value_.menu_price}원</p></div>`;
+							bannerDiv.insertBefore(productContainer, moreButton);
+						});
 					}
-
-			});
-
-		// Header.
-			if (skel.vars.IEVersion < 9)
-				$header.removeClass('alt');
-
-			if ($banner.length > 0
-			&&	$header.hasClass('alt')) {
-
-				$window.on('resize', function() {
-					$window.trigger('scroll');
 				});
+				bannerDiv.appendChild(moreButton);
 
-				$window.on('load', function() {
-
-					$banner.scrollex({
-						bottom:		$header.height() + 10,
-						terminate:	function() { $header.removeClass('alt'); },
-						enter:		function() { $header.addClass('alt'); },
-						leave:		function() { $header.removeClass('alt'); $header.addClass('reveal'); }
-					});
-
-					window.setTimeout(function() {
-						$window.triggerHandler('scroll');
-					}, 100);
-
+				// 리뷰 작성 버튼 추가
+				const reviewButton = document.createElement('button');
+				reviewButton.textContent = '리뷰작성';
+				reviewButton.classList.add('review-button');
+				reviewButton.addEventListener('click', () => {
+					window.location.href = `ReviewWrite.jsp?res_no=${value.res_no}&res_name=${value.res_name}`;
 				});
-
-			}
-
-		// Banner.
-			$banner.each(function() {
-
-				var $this = $(this),
-					$image = $this.find('.image'), $img = $image.find('img');
-
-				// Parallax.
-					$this._parallax(0.275);
-
-				// Image.
-					if ($image.length > 0) {
-
-						// Set image.
-							$this.css('background-image', 'url(' + $img.attr('src') + ')');
-
-						// Hide original.
-							$image.hide();
-
-					}
-
-			});
-
-		// Menu.
-			var $menu = $('#menu'),
-				$menuInner;
-
-			$menu.wrapInner('<div class="inner"></div>');
-			$menuInner = $menu.children('.inner');
-			$menu._locked = false;
-
-			$menu._lock = function() {
-
-				if ($menu._locked)
-					return false;
-
-				$menu._locked = true;
-
-				window.setTimeout(function() {
-					$menu._locked = false;
-				}, 350);
-
-				return true;
-
-			};
-
-			$menu._show = function() {
-
-				if ($menu._lock())
-					$body.addClass('is-menu-visible');
-
-			};
-
-			$menu._hide = function() {
-
-				if ($menu._lock())
-					$body.removeClass('is-menu-visible');
-
-			};
-
-			$menu._toggle = function() {
-
-				if ($menu._lock())
-					$body.toggleClass('is-menu-visible');
-
-			};
-
-			$menuInner
-				.on('click', function(event) {
-					event.stopPropagation();
-				})
-				.on('click', 'a', function(event) {
-
-					var href = $(this).attr('href');
-
-					event.preventDefault();
-					event.stopPropagation();
-
-					// Hide.
-						$menu._hide();
-
-					// Redirect.
-						window.setTimeout(function() {
-							window.location.href = href;
-						}, 250);
-
+				bannerDiv.appendChild(reviewButton);
+				// 리뷰 보기 버튼 추가
+				const reviewMainButton = document.createElement('button');
+				reviewMainButton.textContent = '리뷰보기';
+				reviewMainButton.classList.add('review-main-button');
+				reviewMainButton.addEventListener('click', () => {
+					window.location.href = `ReviewMain.jsp?res_no=${value.res_no}`;
 				});
+				bannerDiv.appendChild(reviewMainButton);
 
-			$menu
-				.appendTo($body)
-				.on('click', function(event) {
+				bannerContainer.appendChild(bannerDiv);
+			})
+		},
+		error: function () {
+			alert('error');
+		}
+	})
+});
 
-					event.stopPropagation();
-					event.preventDefault();
+var flip_menu = document.getElementById('flip_menu');
 
-					$body.removeClass('is-menu-visible');
+listCategory = [];
 
-				})
-				.append('<a class="close" href="#menu">Close</a>');
+function recommendMenu() {
+	$.ajax({
+		// 요청경로
+		url: 'CategoryCon',
+		type: 'GET',
+		success: function (data) {
+			data.forEach(value => {
+				listCategory.push(value);
+			})
+			flip_menu.innerText = listCategory.pop();
+			flip_menu.classList.add('flip-horizontal-bottom');
+		},
+		error: function () {
+			alert('error');
+		}
+	})
+}
+recommendMenu();
+$('#recommendation-button').click(() => {
+	flip_menu.classList.remove('flip-horizontal-bottom');
+	void flip_menu.offsetWidth; // 리플로우 트리거
+	recommendMenu();
+})
 
-			$body
-				.on('click', 'a[href="#menu"]', function(event) {
+flip_menu.addEventListener('animationiteration', () => {
+	flip_menu.innerText = listCategory.pop();
+})
+// HTML에서 search-btn 버튼과 입력 필드 선택
+const searchBtn = document.getElementById('search-btn');
+const searchInput = document.querySelector('input[type="text"]');
 
-					event.stopPropagation();
-					event.preventDefault();
-
-					// Toggle.
-						$menu._toggle();
-
-				})
-				.on('click', function(event) {
-
-					// Hide.
-						$menu._hide();
-
-				})
-				.on('keydown', function(event) {
-
-					// Hide on escape.
-						if (event.keyCode == 27)
-							$menu._hide();
-
-				});
-
-	});
-
-})(jQuery);
+// 입력 필드에서 keyup 이벤트 리스너 등록
+searchInput.addEventListener('keyup', (event) => {
+	// 엔터키(keyCode 13)가 눌렸을 때
+	if (event.keyCode === 13) {
+		// search-btn 버튼 클릭 트리거
+		searchBtn.click();
+	}
+});
