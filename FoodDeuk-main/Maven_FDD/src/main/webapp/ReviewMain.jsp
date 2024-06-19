@@ -6,6 +6,7 @@
 <%@ page import="java.util.List, com.smhrd.model.Review" %>
 <%@ page import="com.smhrd.model.ReviewDAO" %>
 <%@ page import="com.smhrd.model.memberDAO" %>
+<%@ page import="com.smhrd.model.RestaurantDAO" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -34,17 +35,18 @@ body {
         </div>
         <table id="list" enctype="multipart/form-data" method="post">
             
-            <% 
-            String res_no = request.getParameter("res_no");
+            <% String res_no = request.getParameter("res_no");
     ReviewDAO reviewDAO = new ReviewDAO();
     if(res_no==null){
     	List<Review> reviews = reviewDAO.getAllReviews();
     	for (Review review : reviews) {
     		int user_no = review.getUser_no(); // 사용자 번호 가져오기
     	    String user_id = memberDAO.loginName(user_no); // 사용자 ID 가져오기
+    	    int res_nos = review.getRes_no();
+    	    String res_name = RestaurantDAO.resNames(res_nos); // 사용자 ID 가져오기
     		%>
     		            <tr>
-    		            <td><%=request.getParameter("res_name")%></td>
+    		            <td><%=res_name%></td>
     		                <td><%= review.getR_date() %></td>
     		             <td><%= user_id %></td>
     		             </tr>
@@ -60,10 +62,12 @@ body {
     		            <% } %>
     		        </table>
     <%}else{
+    	
     	List<Review> reviews = reviewDAO.detailReviews(res_no);
     	for (Review review : reviews) {
     		int user_no = review.getUser_no(); // 사용자 번호 가져오기
     	    String user_id = memberDAO.loginName(user_no); // 사용자 ID 가져오기
+    	    String res_name = RestaurantDAO.resName(res_no); // 사용자 ID 가져오기
     		%>
     		       
     		            <tr>

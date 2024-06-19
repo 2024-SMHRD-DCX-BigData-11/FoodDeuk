@@ -8,7 +8,7 @@ import org.apache.ibatis.session.SqlSessionFactory;
 import com.smhrd.database.SqlSessionManager;
 
 public class RestaurantDAO {
-	SqlSessionFactory sqlSessionFactory = SqlSessionManager.getSqlSession();
+	static SqlSessionFactory sqlSessionFactory = SqlSessionManager.getSqlSession();
 
 	public List<Restaurant> listAll() {
 		SqlSession session = sqlSessionFactory.openSession(true);
@@ -16,4 +16,19 @@ public class RestaurantDAO {
 		session.close();
 		return results;
 	}
+	public static String resName(String res_no) {
+		SqlSession session = sqlSessionFactory.openSession(true);
+
+		String login_member = session.selectOne("com.smhrd.database.RestaurantMapper.resName", res_no);
+		session.close();
+		return login_member;
+	}
+	public static String resNames(int res_no) {
+		SqlSession session = sqlSessionFactory.openSession(true);
+
+		String login_member = session.selectOne("com.smhrd.database.RestaurantMapper.resNames", res_no);
+		session.close();
+		return login_member;
+	}
+	
 }

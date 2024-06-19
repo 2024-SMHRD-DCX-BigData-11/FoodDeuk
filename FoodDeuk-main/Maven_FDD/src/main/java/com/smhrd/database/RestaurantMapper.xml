@@ -6,4 +6,10 @@
 	<select id="listAll" resultType="com.smhrd.model.Restaurant">
   		SELECT * FROM t_restaurant
     </select>
+    <select id = "resName" parameterType="Member" resultType="String">
+	select res_name from t_restaurant where res_no=#{res_no}
+</select>
+<select id = "resNames" parameterType="Member" resultType="String">
+	select res_name from t_restaurant where res_no=#{res_no}
+</select>
 </mapper>
