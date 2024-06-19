@@ -27,7 +27,8 @@ public class SearchCon extends HttpServlet {
 
 		String keyword = request.getParameter("search");
 		String upperSearch = request.getParameter("upperSearch");
-		String searchType = request.getParameter("searchType");	
+		String searchType = request.getParameter("searchType");
+		String lowpricebutton = request.getParameter("low-price-button");
 		String lat = request.getParameter("lat");
 		String lng = request.getParameter("lng");
 
@@ -71,23 +72,37 @@ public class SearchCon extends HttpServlet {
 				searchResults = dao.searchByCategory(search);
 			}
 		}
-		 if (searchType.equals("menu")) {
+		if ("true".equals(lowpricebutton)) {
+			// 최저가 버튼 기능
 			for (Restaurant restaurant : searchResults) {
+				Menu lowestPricedMenu = null;
 				for (Menu menu : MyAppListener.restaurants.get(restaurant.getRes_no()).getMenus().values()) {
-					if (menu.getMenu_name().contains(keyword)) {
-						if (upperPrice < menu.getMenu_price()) {
-							continue;
-						}
-						restaurant.addMenu(menu);
+					if (lowestPricedMenu == null || menu.getMenu_price() < lowestPricedMenu.getMenu_price()) {
+						lowestPricedMenu = menu;
 					}
+				}
+				if (lowestPricedMenu != null) {
+					restaurant.addMenu(lowestPricedMenu);
 				}
 			}
 		} else {
-			for (Restaurant restaurant : searchResults) {
-				restaurant.setMenus(MyAppListener.restaurants.get(restaurant.getRes_no()).getMenus());
+			if (searchType.equals("menu")) {
+				for (Restaurant restaurant : searchResults) {
+					for (Menu menu : MyAppListener.restaurants.get(restaurant.getRes_no()).getMenus().values()) {
+						if (menu.getMenu_name().contains(keyword)) {
+							if (upperPrice < menu.getMenu_price()) {
+								continue;
+							}
+							restaurant.addMenu(menu);
+						}
+					}
+				}
+			} else {
+				for (Restaurant restaurant : searchResults) {
+					restaurant.setMenus(MyAppListener.restaurants.get(restaurant.getRes_no()).getMenus());
+				}
 			}
 		}
-		 
 		ObjectMapper mapper = new ObjectMapper();
 		String jsonResult = mapper.writeValueAsString(searchResults);
 		response.getWriter().write(jsonResult);
