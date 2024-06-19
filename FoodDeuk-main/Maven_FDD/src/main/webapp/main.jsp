@@ -80,18 +80,22 @@ body {
 	  // 기존 스크립트 코드 위에 추가합니다.
 	  const searchTypeSelect = document.getElementById('search-type');
 	  const upperSearchTxt = document.getElementById('upperSearch-txt');
-
+	  const lowpricebutton = document.querySelector('.low-price-button');
+		
 	  // 페이지가 로드될 때 초기 상태 설정
 	  if (searchTypeSelect.value !== 'menu') {
 	    upperSearchTxt.classList.add('hidden');
+	    lowpricebutton.style.display = 'none'; // 초기 상태에서 최저가 버튼 숨기기
 	  }
 
 	  // search-type 선택 요소에 change 이벤트 리스너 등록
 	  searchTypeSelect.addEventListener('change', (event) => {
 	    if (event.target.value === 'menu') {
 	      upperSearchTxt.classList.remove('hidden');
+	      lowpricebutton.style.display = 'block'; // 'menu'일 때 최저가 버튼 보이기
 	    } else {
 	      upperSearchTxt.classList.add('hidden');
+	      lowpricebutton.style.display = 'none'; // 'menu'가 아닐 때 최저가 버튼 숨기기
 	    }
 	  });
 	var latitude = -1, longitude = -1;
