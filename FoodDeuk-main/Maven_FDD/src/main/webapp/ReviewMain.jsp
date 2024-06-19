@@ -45,10 +45,10 @@ body {
     		                <td></td>
     		             </tr>
     		             <tr>
-    		             <%if(review.getFilename()!=null) {%>
-    		                <td><img src="./images/<%= review.getFilename() %>"></td>
-    		                <%}else{ %>
+    		             <%if(review.getFilename()==null) {%>
     		                <td></td>
+    		                <%}else{ %>
+    		                <td><img src="./images/<%= review.getFilename() %>"></td>
     		                <%} %>
     		                <td><%= review.getReview_content()%></td>
     		                <td><%= review.getRatings() %></td>     

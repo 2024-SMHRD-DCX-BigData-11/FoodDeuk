@@ -35,7 +35,6 @@ header h1 {
    text-shadow: -3px -3px 0 #fff, 3px -3px 0 #fff, -3px 3px 0 #fff, 3px 3px
       0 #fff, -3px 0 0 #fff, 3px 0 0 #fff, 0 -3px 0 #fff, 0 3px 0 #fff;
 }
-
 nav a {
    font-family: 'Jalnan', sans-serif;
    color: #FFD700;
@@ -87,7 +86,11 @@ nav a {
    max-height: 625px; /* 배너 컨테이너의 최대 높이 설정 */
    flex: 1;
 }
-
+.banner h3{
+	text-align:center;
+	width: 250px;
+    height: 100px;
+}
 .banner {
 	border-radius: 5px;
     flex: 0 0 auto;
@@ -95,9 +98,7 @@ nav a {
     margin-right: 20px;
     border: 1px solid #ccc;
     padding: 5px;
-    text-align: center;
 }
-
 .banner img {
 	border-radius: 5px;
     width: 100px;

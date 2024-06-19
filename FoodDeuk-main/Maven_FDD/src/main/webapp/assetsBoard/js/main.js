@@ -209,7 +209,7 @@ function test(value) {
 		temp += `<img src="${value.res_image}" alt="Banner">`
 	}
 	temp += `</div>`;
-	temp += `<div><h3>${value.res_name}</h3></div></div>`;
+	temp += `<div id="res_name" width=500px><h3>${value.res_name}</h3></div></div>`;
 
 	const menus = Object.values(value.menus);
 

@@ -71,7 +71,7 @@ body {
 			</div>
 			<div id="map"></div>
 		</div>
-		<div class="banner-container" id="banner-container"></div>
+		<div class="banner-container" id="banner-container" ></div>
 	</div>
 
 	<script
