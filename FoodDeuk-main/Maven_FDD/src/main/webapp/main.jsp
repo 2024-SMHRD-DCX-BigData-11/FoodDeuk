@@ -130,7 +130,6 @@ body {
 				const bannerContainer = document.getElementById('banner-container');
 				bannerContainer.innerHTML = ''; // 기존 배너 초기화
 
-				data.slice(0, 15).forEach(value => {
 					var marker = new naver.maps.Marker({
 						position: new naver.maps.LatLng(value.lat, value.lng),
 						map: map,
