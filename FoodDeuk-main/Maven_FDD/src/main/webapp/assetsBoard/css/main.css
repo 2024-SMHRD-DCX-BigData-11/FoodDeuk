@@ -220,7 +220,7 @@ input {
   }
 .recommendation-button, .high-price-button, .low-price-button, .checkList-button {
    background-color: #ffa500; /* 연주황색 */
-   color: white;
+   color:white;
    border: none;
    text-align: right;
    text-decoration: none;

@@ -8,7 +8,7 @@ import org.apache.ibatis.session.SqlSessionFactory;
 import com.smhrd.database.SqlSessionManager;
 
 public class memberDAO {
-	SqlSessionFactory sqlSessionFactory = SqlSessionManager.getSqlSession();
+	static SqlSessionFactory sqlSessionFactory = SqlSessionManager.getSqlSession();
 
 	public int join(Member member) {
 		SqlSession session = sqlSessionFactory.openSession(true);
@@ -27,6 +27,14 @@ public class memberDAO {
 		session.close();
 		return login_member;
 	}
+	public static String loginName(int user_no) {
+		SqlSession session = sqlSessionFactory.openSession(true);
+
+		String login_member = session.selectOne("com.smhrd.database.MemberMapper.loginName", user_no);
+		session.close();
+		return login_member;
+	}
+	
 
 	public int update(Member update_member) {
 		SqlSession session = sqlSessionFactory.openSession(true);

@@ -2,9 +2,10 @@
 <%@page import="com.smhrd.model.Review"%>
 <%@page import="com.smhrd.model.ReviewDAO"%>
 <%@page import="com.smhrd.model.Member"%>
-<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
 <%@ page import="java.util.List, com.smhrd.model.Review" %>
 <%@ page import="com.smhrd.model.ReviewDAO" %>
+<%@ page import="com.smhrd.model.memberDAO" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -23,16 +24,17 @@ body {
 </style>
 </head>
 <body>
+ 	<%
+        Member login_member = (Member)session.getAttribute("login_member");
+      %>
     <div id="board">
         <h1 style="font-size: 24px; margin-bottom: 20px;">리뷰 게시판</h1>
-         <%
-        Member login_member = (Member)session.getAttribute("login_member");
-      %><div class="buttons">
+         <div class="buttons">
             <a href="main.jsp"><button id="writer">홈으로가기</button></a>
         </div>
         <table id="list">
             
-            <%
+            <% 
             String res_no = request.getParameter("res_no");
     ReviewDAO reviewDAO = new ReviewDAO();
     if(res_no==null){
@@ -58,12 +60,12 @@ body {
     <%}else{
     	List<Review> reviews = reviewDAO.detailReviews(res_no);
     	for (Review review : reviews) {
+    		int user_no = review.getUser_no(); // 사용자 번호 가져오기
+    	    String user_id = memberDAO.loginName(user_no); // 사용자 ID 가져오기
     		%>
-    		           
-    		               <!-- <td><%= review.getReview_no() %></td>
-    		                <td><%= review.getRes_no() %></td>-->
+    		       
     		            <tr>
-    		                <td><%= review.getUser_no() %></td>
+    		                <td><%= user_id %></td>
     		                <td><%= review.getR_date() %></td>
     		                <td></td>
     		             </tr>
@@ -73,7 +75,7 @@ body {
     		                <td><%= review.getRatings() %></td>     
     		            </tr>
     		        
-    		        <%}%></table> <% }%>
+    		        <%}%></table> <%}%>
     </div>
     <script src="assets/js/jquery.min.js"></script>
     <script src="assets/js/jquery.scrolly.min.js"></script>
