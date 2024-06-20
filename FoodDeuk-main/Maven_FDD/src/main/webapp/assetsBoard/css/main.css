@@ -284,6 +284,6 @@ p {
 }
 
 .test {
-	opacity: 50%;
+	filter: grayscale(100%);
 }
 /* 마커 끝 */

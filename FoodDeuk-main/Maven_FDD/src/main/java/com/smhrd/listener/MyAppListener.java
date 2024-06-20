@@ -35,7 +35,9 @@ public class MyAppListener implements ServletContextListener {
 
 		List<Menu> m_list = new MenuDAO().listAll();
 		for (Menu menu : m_list) {
-			restaurants.get(menu.getRes_no()).addMenu(menu);
+			if (menu.getMenu_price() > 0) {
+				restaurants.get(menu.getRes_no()).addMenu(menu);
+			}
 		}
 //        
 //        List<Category> c_list = new CategoryDAO().listAll();

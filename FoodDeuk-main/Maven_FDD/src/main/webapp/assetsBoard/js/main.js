@@ -66,7 +66,7 @@ $('#check-button').click(() => {
 
 var mapOptions = {
 	center: new naver.maps.LatLng(34.9683954, 127.4841841),
-	zoom: 17
+	zoom: 15
 };
 
 var map = new naver.maps.Map('map', mapOptions);
@@ -82,6 +82,7 @@ navigator.geolocation.getCurrentPosition((position) => {
     	position: new naver.maps.LatLng(latitude, longitude),
     	map: map
 	});
+	map.setCenter(new naver.maps.LatLng(latitude, longitude));
 }, null, {
 	enableHighAccuracy: true,
 	maximumAge: 30000,
@@ -110,6 +111,7 @@ $('#search-btn').click(() => {
 		},
 		type: 'GET',
 		success: function (data) {
+			isWishlist = false;
 			res_data = data;
 			console.log(data);
 			markers.forEach(marker => {
