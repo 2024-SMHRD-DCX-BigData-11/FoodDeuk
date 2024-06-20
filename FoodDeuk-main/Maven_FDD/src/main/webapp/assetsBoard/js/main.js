@@ -1,3 +1,5 @@
+var user_marker = null;
+
 const searchTypeSelect = document.getElementById('search-type');
 const upperSearchTxt = document.getElementById('upperSearch-txt');
 
@@ -42,13 +44,13 @@ $('#check-button').click(() => {
 			'</div>'
 	    });
 	});
-	if (isWishlist) {
+	if (isWishlist) { // 체크리스트 ON
 		bannerContainer.innerHTML = ''; // 기존 배너 초기화
 	    markers.forEach(marker => {
 	    	clickListener = naver.maps.Event.addListener(marker, 'click', clickEvent);
 	    	clickListeners.push(clickListener);
 	    });
-    } else {
+    } else { // 체크리스트  OFF
 	    if (res_data != null) {
 	    	wishlist.clear();
 			bannerContainer.innerHTML = ''; // 기존 배너 초기화
@@ -62,6 +64,13 @@ $('#check-button').click(() => {
     }
 });
 
+var mapOptions = {
+	center: new naver.maps.LatLng(34.9683954, 127.4841841),
+	zoom: 17
+};
+
+var map = new naver.maps.Map('map', mapOptions);
+
 var latitude = -1, longitude = -1;
 navigator.geolocation.getCurrentPosition((position) => {
 	console.log(position);
@@ -69,12 +78,22 @@ navigator.geolocation.getCurrentPosition((position) => {
 	console.log(position.coords.longitude);
 	latitude = position.coords.latitude;
 	longitude = position.coords.longitude;
+	user_marker = new naver.maps.Marker({
+    	position: new naver.maps.LatLng(latitude, longitude),
+    	map: map
+	});
+}, null, {
+	enableHighAccuracy: true,
+	maximumAge: 30000,
+	timeout: 27000
 });
-var mapOptions = {
-	center: new naver.maps.LatLng(34.9683954, 127.4841841),
-	zoom: 17
-};
-var map = new naver.maps.Map('map', mapOptions);
+
+naver.maps.Event.addListener(map, 'click', function(e) {
+    user_marker.setPosition(e.coord);
+    latitude = user_marker.position._lat;
+    longitude = user_marker.position._lng;
+    console.log(user_marker);
+});
 
 var markers = []
 
