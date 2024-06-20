@@ -3,16 +3,5 @@
  "http://java.sun.com/dtd/web-app_2_3.dtd" >
 <web-app>
 	<display-name>Archetype Created Web Application</display-name>
-	<servlet>
-		<servlet-name>ChatListServlet</servlet-name>
-		<display-name>ChatListServlet</display-name>
-		<description></description>
-		<servlet-class>com.smhrd.model.ChatListServlet</servlet-class>
-	</servlet>
-	<servlet>
-		<servlet-name>ChatSubmitServlet</servlet-name>
-		<display-name>ChatSubmitServlet</display-name>
-		<description></description>
-		<servlet-class>com.smhrd.model.ChatSubmitServlet</servlet-class>
-	</servlet>
+	
 </web-app>
