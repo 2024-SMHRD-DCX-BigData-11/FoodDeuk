@@ -8,7 +8,7 @@
   	</insert>
   	<select id="showReview" resultType="Review">
         <![CDATA[
-  		SELECT * FROM (SELECT * rnum FROM t_review a ORDER BY review_no DESC) WHERE RNOWNUM <= 20
+  		SELECT * FROM (SELECT * rnum FROM t_review a ORDER BY review_no DESC) WHERE ROWNUM <= 20
         ]]>
   	</select>
      <select id="detailReview" resultType="Review">
