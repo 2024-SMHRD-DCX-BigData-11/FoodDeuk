@@ -1,3 +1,27 @@
+// 오른쪽 클릭 방지
+document.oncontextmenu = function() {
+    return false;
+}
+
+// 드래그 방지
+var omitformtags = ["input", "textarea", "select"]
+omitformtags = omitformtags.join("|")
+
+function disableselect(e) {
+    if (omitformtags.indexOf(e.target.tagName.toLowerCase()) == -1)
+        return false
+}
+
+function reEnable() {
+    return true
+}
+
+if (typeof document.onselectstart != "undefined")
+    document.onselectstart = new Function("return false")
+else {
+    document.onmousedown = disableselect
+    document.onmouseup = reEnable
+
 var user_marker = null;
 
 const searchTypeSelect = document.getElementById('search-type');
@@ -57,7 +81,7 @@ $('#check-button').click(() => {
 		    clickListeners.forEach(clickListener => {
 		    	naver.maps.Event.removeListener(clickListener);
 		    });
-	    	res_data.slice(0, 15).forEach(value => {
+	    	res_data.forEach(value => {
 	    		test(value);
 			});
 		}
@@ -112,6 +136,7 @@ $('#search-btn').click(() => {
 		type: 'GET',
 		success: function (data) {
 			isWishlist = false;
+	    	wishlist.clear();
 			res_data = data;
 			console.log(data);
 			markers.forEach(marker => {
@@ -119,7 +144,7 @@ $('#search-btn').click(() => {
 			})
 			bannerContainer.innerHTML = ''; // 기존 배너 초기화
 
-			data.slice(0, 15).forEach(value => {
+			data.forEach(value => {
 				var marker = new naver.maps.Marker({
 					position: new naver.maps.LatLng(value.lat, value.lng),
 					map: map,

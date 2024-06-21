@@ -8,7 +8,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>푸드득</title>
 <script type="text/javascript"
-	src="http://openapi.map.naver.com/openapi/v3/maps.js?ncpClientId=0x06a17qwi"></script>
+	src="https://openapi.map.naver.com/openapi/v3/maps.js?ncpClientId=0x06a17qwi"></script>
 <link rel="stylesheet" href="assetsBoard/css/main.css" />
 <link
 	href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css"
