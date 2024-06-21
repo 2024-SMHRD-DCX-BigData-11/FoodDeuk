@@ -7,7 +7,9 @@
   		insert into t_review values(t_review_SEQ.nextval, #{res_no},#{user_no},#{filename},#{review_content},#{ratings},sysdate)
   	</insert>
   	<select id="showReview" resultType="Review">
-  		select * from t_review order by r_date desc
+        <![CDATA[
+  		SELECT * FROM (SELECT * rnum FROM t_review a ORDER BY review_no DESC) WHERE RNOWNUM <= 20
+        ]]>
   	</select>
      <select id="detailReview" resultType="Review">
      	select * from t_review where res_no=#{res_no} order by r_date desc
