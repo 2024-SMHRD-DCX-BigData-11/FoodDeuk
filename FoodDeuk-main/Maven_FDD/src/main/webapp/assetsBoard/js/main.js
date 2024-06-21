@@ -195,18 +195,18 @@ searchInput.addEventListener('keyup', (event) => {
 });
 function clickEvent(e) {
 	var marker = e.overlay;
-	    		if (wishlist.has(marker)) {
-	    			wishlist.delete(marker);
-	    		} else {
-	    			wishlist.add(marker);
-	    		}
-				bannerContainer.innerHTML = ''; // 기존 배너 초기화
-				wishlist.forEach(marker_ => {
-					test(marker_.data);
-				});
-	    		marker.isCheck = !marker.isCheck;
-			    marker.setIcon({
-	            content: '<div class="marker">' +
+	    if (wishlist.has(marker)) {
+	    	wishlist.delete(marker);
+	    } else {
+	    	wishlist.add(marker);
+	    }
+		bannerContainer.innerHTML = ''; // 기존 배너 초기화
+		wishlist.forEach(marker_ => {
+			test(marker_.data);
+		});
+	    marker.isCheck = !marker.isCheck;
+		marker.setIcon({
+	    	content: '<div class="marker">' +
 					'<div class="marker_icon_area' +
 					(!marker.isCheck ? ' test">' : '">') +
 					'<img src="assetsBoard/image/restaurant.png" width="34" height="34" alt="음식점" class="icon">' +
@@ -217,7 +217,7 @@ function clickEvent(e) {
 					'</strong>' +
 					'</div>' +
 					'</div>'
-	        	});
+		});
 }
 function test(value) {
 	const bannerDiv = document.createElement('div');
@@ -241,29 +241,34 @@ function test(value) {
 
 	bannerDiv.innerHTML = temp;
 
-				// 메뉴 더보기 버튼 추가
-	const moreButton = document.createElement('button');
-	moreButton.textContent = '더보기';
-	moreButton.classList.add('more-button');
-	moreButton.addEventListener('click', () => {
-		if (bannerDiv.classList.contains('expanded')) {
-			bannerDiv.classList.remove('expanded');
-			moreButton.textContent = '더보기';
-			bannerDiv.querySelectorAll('.product-container').forEach((el, index) => {
-				if (index >= 3) el.remove();
-			});
-		} else {
-			bannerDiv.classList.add('expanded');
-			moreButton.textContent = '접기';
-			menus.slice(3).forEach(value_ => {
-				const productContainer = document.createElement('div');
-				productContainer.classList.add('product-container');
-				productContainer.innerHTML = `<div><p>${value_.menu_name}</p></div><div><p>${value_.menu_price}원</p></div>`;
-				bannerDiv.insertBefore(productContainer, moreButton);
-			});
-		}
-	});
-	bannerDiv.appendChild(moreButton);
+	// 메뉴 더보기 버튼 추가
+	// 메뉴가 3개 이상인 가게만 더보기 버튼 추가
+	if (menus.length >= 3) {
+		const moreButton = document.createElement('button');
+		moreButton.textContent = '더보기';
+		moreButton.classList.add('more-button');
+		moreButton.addEventListener('click', () => {
+			if (bannerDiv.classList.contains('expanded')) {
+				bannerDiv.classList.remove('expanded');
+				moreButton.textContent = '더보기';
+				bannerDiv.querySelectorAll('.product-container').forEach((el, index) => {
+					if (index >= 3) {
+						el.remove();
+					}
+				});
+			} else {
+				bannerDiv.classList.add('expanded');
+				moreButton.textContent = '접기';
+				menus.slice(3).forEach(value_ => {
+					const productContainer = document.createElement('div');
+					productContainer.classList.add('product-container');
+					productContainer.innerHTML = `<div><p>${value_.menu_name}</p></div><div><p>${value_.menu_price}원</p></div>`;
+					bannerDiv.insertBefore(productContainer, moreButton);
+				});
+			}
+		});
+		bannerDiv.appendChild(moreButton);
+	}
 
 	// 리뷰 작성 버튼 추가
 	const reviewButton = document.createElement('button');

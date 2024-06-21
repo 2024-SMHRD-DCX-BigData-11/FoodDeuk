@@ -9,7 +9,6 @@ import javax.servlet.ServletContextListener;
 import javax.servlet.annotation.WebListener;
 
 import com.smhrd.model.Category;
-import com.smhrd.model.CategoryDAO;
 import com.smhrd.model.Menu;
 import com.smhrd.model.MenuDAO;
 import com.smhrd.model.Restaurant;
