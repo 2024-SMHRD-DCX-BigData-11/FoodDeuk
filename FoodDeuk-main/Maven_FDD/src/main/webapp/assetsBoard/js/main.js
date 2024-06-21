@@ -268,8 +268,8 @@ function test(value) {
 	bannerDiv.innerHTML = temp;
 
 	// 메뉴 더보기 버튼 추가
-	// 메뉴가 3개 이상인 가게만 더보기 버튼 추가
-	if (menus.length >= 3) {
+	// 메뉴가 3개 초과인 가게만 더보기 버튼 추가
+	if (menus.length > 3) {
 		const moreButton = document.createElement('button');
 		moreButton.textContent = '더보기';
 		moreButton.classList.add('more-button');
