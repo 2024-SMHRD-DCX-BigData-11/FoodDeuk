@@ -5,22 +5,23 @@ document.oncontextmenu = function() {
 
 // 드래그 방지
 var omitformtags = ["input", "textarea", "select"]
-omitformtags = omitformtags.join("|")
+omitformtags = omitformtags.join("|");
 
 function disableselect(e) {
     if (omitformtags.indexOf(e.target.tagName.toLowerCase()) == -1)
-        return false
+        return false;
 }
 
 function reEnable() {
-    return true
+    return true;
 }
 
-if (typeof document.onselectstart != "undefined")
-    document.onselectstart = new Function("return false")
-else {
-    document.onmousedown = disableselect
-    document.onmouseup = reEnable
+if (typeof document.onselectstart != "undefined") {
+    document.onselectstart = new Function("return false");
+} else {
+    document.onmousedown = disableselect;
+    document.onmouseup = reEnable;
+}
 
 var user_marker = null;
 
